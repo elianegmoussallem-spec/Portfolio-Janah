@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fiche de Résultats & Réalisations</title>
+<title>Fiche de Résultats d'Orientation</title>
 <style>
-  @page { size: A4; margin: 1.8cm 2cm; }
+  @page { size: A4; margin: 1.5cm 1.8cm; }
   @media print {
     body { margin: 0; background: white; }
     .no-print { display: none; }
-    .page { box-shadow: none; margin: 0; }
+    .page { box-shadow: none; margin: 0; width: 100%; padding: 0; }
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -25,7 +25,7 @@
     background: white;
     width: 210mm;
     min-height: 297mm;
-    padding: 1.8cm 2cm;
+    padding: 1.5cm 1.8cm;
     box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     margin-bottom: 20px;
   }
@@ -39,47 +39,33 @@
   hr.divider {
     border: none;
     border-top: 1.5px solid black;
-    margin: 5pt 0;
+    margin: 6pt 0;
   }
   .section-title {
     font-size: 11pt;
     font-weight: bold;
     line-height: 1.4;
-    margin-top: 6pt;
-    margin-bottom: 2pt;
+    margin-top: 8pt;
+    margin-bottom: 4pt;
   }
   .info-row { font-size: 10pt; line-height: 1.4; }
   .field-label {
     font-weight: bold;
     font-size: 10pt;
-    margin-top: 4pt;
+    margin-top: 6pt;
+    margin-bottom: 4pt;
     display: block;
-  }
-  .item-list {
-    list-style: none;
-    padding-left: 14pt;
-    margin: 1pt 0 3pt 0;
-  }
-  .item-list li {
-    font-size: 10pt;
-    font-weight: normal;
-    line-height: 1.4;
-    position: relative;
-  }
-  .item-list li::before {
-    content: "•";
-    position: absolute;
-    left: -12pt;
-    color: #333;
   }
   .result-line {
     font-size: 10pt;
     font-weight: normal;
     line-height: 1.4;
     padding-left: 4pt;
+    margin-bottom: 2pt;
   }
   .choix-text { font-size: 10pt; line-height: 1.4; padding-left: 4pt; }
   .choix-text div { margin-bottom: 1pt; }
+  
   .print-btn {
     background: #1A3557;
     color: white;
@@ -93,34 +79,33 @@
   }
   .print-btn:hover { background: #2c5282; }
   
-  /* ── Realisations Grid ── */
-  .realisations-grid {
+  /* ── Grille Visuelle Universelle (Pour toutes les sections) ── */
+  .portfolio-grid {
     display: flex;
-    gap: 15px;
+    gap: 12px;
     flex-wrap: wrap;
-    margin-top: 10px;
-    margin-bottom: 5px;
+    margin: 6pt 0 10pt 0;
   }
-  .real-card {
-    width: calc(50% - 7.5px);
-    border: 1px solid #e0e0e0;
-    padding: 10px;
-    border-radius: 8px;
+  .portfolio-card {
+    width: calc(33.33% - 8px);
+    border: 1px solid #e2e8f0;
+    padding: 8px;
+    border-radius: 6px;
     text-align: center;
-    background: #fafafa;
+    background: #f8fafc;
     page-break-inside: avoid;
   }
-  .real-card img {
-    max-width: 100%;
-    height: 120px;
+  .portfolio-card img {
+    width: 100%;
+    height: 80px;
     object-fit: cover;
     border-radius: 4px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
-  .real-desc {
-    font-size: 10pt;
-    font-weight: bold;
-    color: #333;
+  .card-text {
+    font-size: 9.5pt;
+    font-weight: 600;
+    color: #334155;
   }
 
   /* ── Lang bar ── */
@@ -149,15 +134,13 @@
   }
 
   /* RTL support */
-  .page[dir="rtl"] .item-list { padding-left: 0; padding-right: 14pt; }
-  .page[dir="rtl"] .item-list li::before { left: auto; right: -12pt; }
   .page[dir="rtl"] .result-line,
   .page[dir="rtl"] .choix-text { padding-left: 0; padding-right: 4pt; }
   .page[dir="rtl"] .info-row,
   .page[dir="rtl"] .section-title,
   .page[dir="rtl"] .field-label,
   .page[dir="rtl"] .header { text-align: right; }
-  .page[dir="rtl"] .realisations-grid { direction: rtl; }
+  .page[dir="rtl"] .portfolio-grid { direction: rtl; }
 </style>
 </head>
 <body>
@@ -187,21 +170,21 @@
   <div class="section-title" id="t-portfolio">📋 Mon Portfolio</div>
 
   <span class="field-label" id="t-car-label">Tes caractéristiques sont :</span>
-  <ul class="item-list" id="list-car"></ul>
+  <div class="portfolio-grid" id="grid-car"></div>
 
   <span class="field-label" id="t-int-label">Tes centres d'intérêts sont :</span>
-  <ul class="item-list" id="list-int"></ul>
+  <div class="portfolio-grid" id="grid-int"></div>
 
   <span class="field-label" id="t-comp-label">Tes compétences sont :</span>
-  <ul class="item-list" id="list-comp"></ul>
+  <div class="portfolio-grid" id="grid-comp"></div>
 
   <span class="field-label" id="t-val-label">Tes valeurs sont :</span>
-  <ul class="item-list" id="list-val"></ul>
+  <div class="portfolio-grid" id="grid-val"></div>
 
   <hr class="divider">
   
   <div class="section-title" id="t-real-title">🏆 Mes Réalisations</div>
-  <div id="realisations-container" class="realisations-grid"></div>
+  <div id="realisations-container" class="portfolio-grid"></div>
 
   <hr class="divider">
 
@@ -229,16 +212,46 @@
 </div>
 
 <script>
-// ─── Données des Réalisations (Modifie les images et les textes ici) ────────
+// ─── Dictionnaire Universel des Images ──────────────────────────────────────
+const ITEM_IMAGES = {
+  // Caractéristiques
+  'Ambitieux(se)': 'ambitieux.jpg', 'Créatif(ve)': 'creatif.jpg', 'Organisé(e)': 'organise.jpg',
+  'Persévérant(e)': 'Perseverant.jpg', 'Sociable': 'sociable.jpg', 'Responsable': 'responsable.jpg',
+  'Indépendant(e)': 'freelancer.jpg', 'Calme': 'calme.jpg', 'Empathique': 'empathique.jpg',
+  'Attentif(ve)': 'attentive.jpg', 'Honnête': 'honnete.jpg', 'Curieux': 'curieux.jpg',
+  'Méticuleux': 'meticuleux.jpg', 'Coopérant': 'cooperant.jpg', 'Timide': 'timide.jpg',
+  // Centres d'intérêt
+  'Sciences et recherche': 'SciencesandResearch.jpg', 'Technologie et informatique': 'info.jpg',
+  'Santé et aide aux personnes': 'HealthandHelpingPeople.jpg', 'Arts et création': 'artetcreation.jpg',
+  'Commerce et entrepreneuriat': 'commerce_entrepreneuriat.jpg', 'Nature et environnement': 'nature.jpg',
+  'Communication et médias': 'communicationetmedias.jpg', 'Gestion et organisation': 'ManagementandOrganization.jpg',
+  'Travail manuel (avec les mains)': 'travailmanuel.jpg', 'Éducation et formation': 'Education-and-training.jpg',
+  'Activités culinaires': 'cuisine.jpg',
+  // Compétences
+  'Théâtre': 'theatre.jpg', 'Théatre': 'theatre.jpg', 'Sport': 'sport.jpg', 'Cuisiner': 'cooking.jpg',
+  'Résolution de problèmes': 'Creative-Problem-Solving-Process.jpg', 'Jeux de société': 'boardgames.jpg',
+  'Créativité': 'creativity.jpg', 'Organisation': 'organization.jpg', 'Jeux stratégiques': 'Jeux_strategiques.jpg',
+  'Compétences numériques': 'DigitalSkills.jpg', 'Langue étrangère': 'Learning-a-ForeignL.jpg',
+  'Jeux de construction': 'lego.jpg', 'Robotiques': 'robotiques.jpg', 'Dessin': 'finirundessin.jpg',
+  // Valeurs
+  'Respect': 'respect.jpg', 'Indépendance': 'independance.jpg', 'Aider les autres': 'aiderqqun.jpg',
+  'Prestige': 'prestige.jpg', 'Sécurité financière': 'securite_financiere.jpg', 'Liberté du temps': 'freelancer.jpg',
+  'Travail en équipe': 'teamwork.jpg', 'Défi intellectuel': 'defiintellectuelle.jpg', 'Impact social': 'impactsocial.jpg',
+  'Aventure': 'aventure.jpg',
+  // Commun
+  'Autres': 'other.jpg'
+};
+
+// ─── Vos Réalisations Fixes ────────────────────────────────────────────────
 const REALISATIONS = [
   {
-    img: 'https://via.placeholder.com/400x300?text=Image+1', // Remplace par le lien de ta première photo
+    img: 'award.jpg',
     fr: 'Création d\'un guide visuel',
     ar: 'إنشاء دليل مرئي',
     en: 'Creation of a visual guide'
   },
   {
-    img: 'https://via.placeholder.com/400x300?text=Image+2', // Remplace par le lien de ta deuxième photo
+    img: 'project.jpg',
     fr: 'Projet de gestion d\'équipe',
     ar: 'مشروع إدارة الفريق',
     en: 'Team management project'
@@ -297,4 +310,239 @@ const UI = {
     tVal:        'My values:',
     tRiasec:     '🔬 My RIASEC Profile (Top 3)',
     tIntel:      '🧠 My Dominant Intelligence Types (Top 3)',
-    tPro:        '🎯
+    tPro:        '🎯 Professional Choice',
+    tReal:       '🏆 My Achievements',
+    tPrint:      'Print / Save as PDF',
+    proHas:      'Professional choice', proJob: 'Career', proSubjects: 'Subjects',
+    proKnows:    'Knows someone in this field', proHelp: 'Can help',
+    yes: 'Yes', no: 'No'
+  }
+};
+
+const CHOICE_AR = {
+  'Ambitieux(se)':'طموح/ة','Créatif(ve)':'مبدع/ة','Organisé(e)':'منظّم/ة',
+  'Persévérant(e)':'مثابر/ة','Sociable':'اجتماعي/ة','Responsable':'مسؤول/ة',
+  'Indépendant(e)':'مستقل/ة','Calme':'هادئ/ة','Empathique':'متعاطف/ة',
+  'Attentif(ve)':'منتبه/ة','Honnête':'صادق/ة','Curieux':'فضولي/ة',
+  'Méticuleux':'دقيق/ة','Coopérant':'متعاون/ة','Timide':'خجول/ة','Autres':'أخرى',
+  'Sciences et recherche':'العلوم والبحث','Technologie et informatique':'التكنولوجيا والمعلوماتية',
+  'Santé et aide aux personnes':'الصحة ومساعدة الناس','Arts et création':'الفنون والإبداع',
+  'Commerce et entrepreneuriat':'التجارة وريادة الأعمال','Nature et environnement':'الطبيعة والبيئة',
+  'Communication et médias':'التواصل والإعلام','Gestion et organisation':'الإدارة والتنظيم',
+  'Travail manuel (avec les mains)':'العمل اليدوي','Éducation et formation':'التعليم والتكوين',
+  'Activités culinaires':'الأنشطة الطهوية',
+  'Théâtre':'المسرح','Théatre':'المسرح','Sport':'الرياضة','Cuisiner':'الطبخ','cuisiner':'الطبخ',
+  'Résolution de problèmes':'حل المشكلات','Jeux de société':'ألعاب الطاولة',
+  'Créativité':'الإبداع','Organisation':'التنظيم','Jeux stratégiques':'الألعاب الاستراتيجية',
+  'Compétences numériques':'المهارات الرقمية','Langue étrangère':'اللغة الأجنبية',
+  'Jeux de construction':'ألعاب البناء','Robotiques':'الروبوتيك','Dessin':'الرسم',
+  'Respect':'الاحترام','Indépendance':'الاستقلالية','Aider les autres':'مساعدة الآخرين',
+  'Prestige':'المكانة','Sécurité financière':'الأمن المالي','Liberté du temps':'حرية الوقت',
+  'Travail en équipe':'العمل الجماعي','Défi intellectuel':'التحدي الفكري',
+  'Impact social':'الأثر الاجتماعي','Aventure':'المغامرة',
+  'Réaliste':'واقعي','Investigateur':'باحث','Artistique':'فني/مبدع',
+  'Social':'اجتماعي','Entrepreneurial':'ريادي','Conventionnel':'تقليدي',
+  'Linguistique':'لغوي','Logico-mathématique':'منطقي-رياضي','Spatiale':'مكاني',
+  'Musicale':'موسيقي','Kinesthésique':'جسدي-حركي','Interpersonnelle':'تواصلي',
+  'Intrapersonnelle':'ذاتي','Naturaliste':'طبيعي','Oui':'نعم','Non':'لا'
+};
+
+const CHOICE_EN = {
+  'Ambitieux(se)':'Ambitious','Créatif(ve)':'Creative','Organisé(e)':'Organized',
+  'Persévérant(e)':'Persevering','Sociable':'Sociable','Responsable':'Responsible',
+  'Indépendant(e)':'Independent','Calme':'Calm','Empathique':'Empathetic',
+  'Attentif(ve)':'Attentive','Honnête':'Honest','Curieux':'Curious',
+  'Méticuleux':'Meticulous','Coopérant':'Cooperative','Timide':'Shy','Autres':'Other',
+  'Sciences et recherche':'Sciences and Research','Technologie et informatique':'Technology and Computing',
+  'Santé et aide aux personnes':'Health and Helping People','Arts et création':'Arts and Creation',
+  'Commerce et entrepreneuriat':'Business and Entrepreneurship','Nature et environnement':'Nature and Environment',
+  'Communication et médias':'Communication and Media','Gestion et organisation':'Management and Organization',
+  'Travail manuel (avec les mains)':'Manual Work','Éducation et formation':'Education and Training',
+  'Activités culinaires':'Culinary Activities',
+  'Théâtre':'Theater','Théatre':'Theater','Sport':'Sport','Cuisiner':'Cooking','cuisiner':'Cooking',
+  'Résolution de problèmes':'Problem Solving','Jeux de société':'Board Games',
+  'Créativité':'Creativity','Organisation':'Organization','Jeux stratégiques':'Strategy Games',
+  'Compétences numériques':'Digital Skills','Langue étrangère':'Foreign Language',
+  'Jeux de construction':'Construction Games','Robotiques':'Robotics','Dessin':'Drawing',
+  'Respect':'Respect','Indépendance':'Independence','Aider les autres':'Helping Others',
+  'Prestige':'Prestige','Sécurité financière':'Financial Security','Liberté du temps':'Time Freedom',
+  'Travail en équipe':'Teamwork','Défi intellectuel':'Intellectual Challenge',
+  'Impact social':'Social Impact','Aventure':'Adventure',
+  'Réaliste':'Realistic','Investigateur':'Investigative','Artistique':'Artistic',
+  'Social':'Social','Entrepreneurial':'Entrepreneurial','Conventionnel':'Conventional',
+  'Linguistique':'Linguistic','Logico-mathématique':'Logico-Mathematical','Spatiale':'Spatial',
+  'Musicale':'Musical','Kinesthésique':'Kinesthetic','Interpersonnelle':'Interpersonal',
+  'Intrapersonnelle':'Intrapersonal','Naturaliste':'Naturalist','Oui':'Yes','Non':'No'
+};
+
+// ─── URL params ────────────────────────────────────────────────────────────
+function getParam(name) {
+  const aliases = {
+    nom:    ['الإسم','nom','name'],
+    age:    ['العمر','age'],
+    ecole:  ['ecole','school','مدرسة'],
+    classe: ['الصف','classe','class'],
+    car:    ['صفاتي','car','chars'],
+    int:    ['إهتماماتي','int','interests'],
+    comp:   ['مهاراتي','comp','skills'],
+    val:    ['قيمي','val','values'],
+    riasec: ['إختبارriasec','riasec'],
+    intel:  ['إختبارintel','intel'],
+    choix:  ['مهنتي','choix','pro']
+  };
+  const p = new URLSearchParams(window.location.search);
+  const keys = aliases[name] || [name];
+  for (const k of keys) {
+    const v = p.get(k);
+    if (v !== null) return decodeURIComponent(v.trim());
+  }
+  return '';
+}
+
+const RAW = {
+  nom: getParam('nom'), age: getParam('age'), ecole: getParam('ecole'), classe: getParam('classe'),
+  car: getParam('car'), int: getParam('int'), comp: getParam('comp'), val: getParam('val'),
+  riasec: getParam('riasec'), intel: getParam('intel'), choix: getParam('choix')
+};
+
+if (!window.location.search) {
+  RAW.nom    = 'Eliane Khoury'; RAW.age    = '15'; RAW.ecole  = 'SFR'; RAW.classe = 'EB9';
+  RAW.car    = 'Ambitieux(se), Organisé(e), Sociable';
+  RAW.int    = 'Sciences et recherche, Arts et création, Nature et environnement';
+  RAW.comp   = 'Théâtre, Résolution de problèmes, Créativité';
+  RAW.val    = 'Respect, Créativité, Liberté du temps';
+  RAW.riasec = '🥇 Artistique  🥈 Réaliste  🥉 Investigateur';
+  RAW.intel  = '🥇 Linguistique  🥈 Musicale  🥉 Spatiale';
+  RAW.choix  = 'Oui | Metier : médecine | Matieres : bio, chimie | Connait quelquun: Oui | Peut aider: Oui';
+}
+
+function trans(term, lang) {
+  const t = term.trim();
+  if (lang === 'ar') return CHOICE_AR[t] || t;
+  if (lang === 'en') return CHOICE_EN[t] || t;
+  return t;
+}
+
+function parseMedals(raw) {
+  if (!raw) return [];
+  return raw.replace(/🥇|🥈|🥉/g, '|').split('|').map(s => s.trim()).filter(Boolean);
+}
+
+function parseChoix(raw, lang) {
+  if (!raw) return '—';
+  const u = UI[lang];
+  const segments = raw.split('|').map(s => s.trim()).filter(Boolean);
+  const lines = [];
+  segments.forEach(seg => {
+    const low = seg.toLowerCase();
+    if (low === 'oui' || low === 'non' || low === 'yes' || low === 'no') {
+      lines.push(`<div><strong>${u.proHas} :</strong> ${trans(seg, lang)}</div>`);
+    } else if (/^m[eé]tier/i.test(low)) {
+      lines.push(`<div><strong>${u.proJob} :</strong> ${seg.replace(/^m[eé]tier\s*[:=]\s*/i,'')}</div>`);
+    } else if (/^mati[eè]res/i.test(low)) {
+      lines.push(`<div><strong>${u.proSubjects} :</strong> ${seg.replace(/^mati[eè]res\s*[:=]\s*/i,'')}</div>`);
+    } else if (/^connait/i.test(low) || /^knows/i.test(low)) {
+      const val = seg.replace(/^[^:=]+[:=]\s*/,'');
+      lines.push(`<div><strong>${u.proKnows} :</strong> ${trans(val, lang)}</div>`);
+    } else if (/^peut aider/i.test(low) || /^can help/i.test(low)) {
+      const val = seg.replace(/^[^:=]+[:=]\s*/,'');
+      lines.push(`<div><strong>${u.proHelp} :</strong> ${trans(val, lang)}</div>`);
+    } else {
+      lines.push(`<div>${seg}</div>`);
+    }
+  });
+  return lines.join('') || '—';
+}
+
+// ─── Générateur de Grille avec Images Multi-langues ─────────────────────────
+function fillPortfolioGrid(gridId, rawCsv, lang) {
+  const grid = document.getElementById(gridId);
+  const items = rawCsv.split(',').map(s => s.trim()).filter(Boolean);
+  
+  if (items.length === 0) {
+    grid.innerHTML = '<div style="color:#999; padding-left:4px;">—</div>';
+    return;
+  }
+  
+  grid.innerHTML = items.map(rawItem => {
+    const translatedText = trans(rawItem, lang);
+    const imgFile = ITEM_IMAGES[rawItem] || 'other.jpg'; // Recherche l'image d'origine
+    return `
+      <div class="portfolio-card">
+        <img src="${imgFile}" alt="${translatedText}">
+        <div class="card-text">${translatedText}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+const MEDALS = ['🥇','🥈','🥉'];
+
+function setLang(lang) {
+  ['ar','fr','en'].forEach(l => document.getElementById('btn-'+l).classList.toggle('active', l===lang));
+  const u = UI[lang];
+  document.documentElement.lang = u.htmlLang;
+  document.getElementById('page').dir = u.dir;
+
+  // Traduction des titres de l'interface
+  document.getElementById('main-title').textContent   = u.mainTitle;
+  document.getElementById('t-info').textContent       = u.tInfo;
+  document.getElementById('t-nom-label').textContent  = u.tNom;
+  document.getElementById('t-age-label').textContent  = u.tAge;
+  document.getElementById('t-ans').textContent        = u.tAns;
+  document.getElementById('t-ecole-label').textContent= u.tEcole;
+  document.getElementById('t-classe-label').textContent= u.tClasse;
+  document.getElementById('t-portfolio').textContent  = u.tPortfolio;
+  document.getElementById('t-car-label').textContent  = u.tCar;
+  document.getElementById('t-int-label').textContent  = u.tInt;
+  document.getElementById('t-comp-label').textContent = u.tComp;
+  document.getElementById('t-val-label').textContent  = u.tVal;
+  document.getElementById('t-riasec-title').textContent= u.tRiasec;
+  document.getElementById('t-intel-title').textContent = u.tIntel;
+  document.getElementById('t-pro-title').textContent  = u.tPro;
+  document.getElementById('t-real-title').textContent = u.tReal;
+  document.querySelectorAll('.print-label,[id=btn-print-label]').forEach(el => el.textContent = u.tPrint);
+
+  // Remplissage automatique des grilles visuelles
+  fillPortfolioGrid('grid-car', RAW.car, lang);
+  fillPortfolioGrid('grid-int', RAW.int, lang);
+  fillPortfolioGrid('grid-comp', RAW.comp, lang);
+  fillPortfolioGrid('grid-val', RAW.val, lang);
+
+  // Profil RIASEC et Intelligences
+  const riasecItems = parseMedals(RAW.riasec);
+  const intelItems  = parseMedals(RAW.intel);
+  [1,2,3].forEach(i => {
+    const rv = riasecItems[i-1];
+    document.getElementById('riasec-'+i).textContent = rv ? MEDALS[i-1]+' '+trans(rv, lang) : '';
+    const iv = intelItems[i-1];
+    document.getElementById('intel-'+i).textContent  = iv ? MEDALS[i-1]+' '+trans(iv, lang) : '';
+  });
+
+  document.getElementById('choix-pro').innerHTML = parseChoix(RAW.choix, lang);
+
+  // Rendu de la grille des réalisations fixes
+  const realContainer = document.getElementById('realisations-container');
+  realContainer.innerHTML = REALISATIONS.map(r => `
+    <div class="portfolio-card">
+      <img src="${r.img}" alt="${r[lang]}">
+      <div class="card-text">${r[lang]}</div>
+    </div>
+  `).join('');
+
+  try { localStorage.setItem('fiche-lang', lang); } catch(e){}
+}
+
+// ─── Initialisation des données personnelles ───────────────────────────────
+document.getElementById('nom').textContent    = RAW.nom    || '—';
+document.getElementById('age').textContent    = RAW.age    || '—';
+document.getElementById('ecole').textContent  = RAW.ecole  || '—';
+document.getElementById('classe').textContent = RAW.classe || '—';
+
+const urlLang  = new URLSearchParams(window.location.search).get('lang');
+const savedLang = (() => { try { return localStorage.getItem('fiche-lang'); } catch(e){ return null; } })();
+const initLang  = ['ar','fr','en'].includes(urlLang) ? urlLang : ['ar','fr','en'].includes(savedLang) ? savedLang : 'fr';
+setLang(initLang);
+</script>
+</body>
+</html>
