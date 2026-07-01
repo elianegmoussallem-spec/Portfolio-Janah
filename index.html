@@ -59,9 +59,17 @@
   .result-line {
     font-size: 10pt;
     font-weight: normal;
-    line-height: 1.4;
+    line-height: 1.5;
     padding-left: 4pt;
-    margin-bottom: 2pt;
+    margin-bottom: 4pt;
+  }
+  .result-line strong { font-weight: 700; }
+  .result-desc {
+    display: block;
+    font-size: 9pt;
+    color: #555;
+    font-weight: normal;
+    margin-top: 1pt;
   }
   .choix-text { font-size: 10pt; line-height: 1.4; padding-left: 4pt; }
   .choix-text div { margin-bottom: 1pt; }
@@ -345,6 +353,33 @@ function parseMedals(raw) {
   return raw.replace(/🥇|🥈|🥉/g, '|').split('|').map(s => s.trim()).filter(Boolean);
 }
 
+// ─── Normalisation des clés RIASEC / Intelligences ─────────────────────────
+// Permet de retrouver la bonne entrée dans DESCRIPTIONS même si le texte transmis
+// dans l'URL a une casse, des accents ou une orthographe légèrement différente.
+function stripAccents(str) {
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+function buildLookup(dict) {
+  const map = {};
+  Object.keys(dict).forEach(key => {
+    map[stripAccents(key).toLowerCase()] = key;
+  });
+  return map;
+}
+
+const RIASEC_LOOKUP = buildLookup(DESCRIPTIONS.RIASEC);
+const INTEL_LOOKUP  = buildLookup(DESCRIPTIONS.Intelligences);
+
+function findCanonicalKey(term, lookup) {
+  if (!term) return null;
+  const normalized = stripAccents(term.trim()).toLowerCase();
+  if (lookup[normalized]) return lookup[normalized];
+  // Recherche partielle si aucune correspondance exacte (ex: "logico mathematique")
+  const match = Object.keys(lookup).find(k => k.startsWith(normalized) || normalized.startsWith(k));
+  return match ? lookup[match] : null;
+}
+
 function parseChoix(raw, lang) {
   if (!raw) return '—';
   const u = UI[lang];
@@ -448,11 +483,29 @@ function setLang(lang) {
 
   const riasecItems = parseMedals(RAW.riasec);
   const intelItems  = parseMedals(RAW.intel);
+
   [1,2,3].forEach(i => {
     const rv = riasecItems[i-1];
-    document.getElementById('riasec-'+i).textContent = rv ? MEDALS[i-1]+' '+trans(rv, lang) : '';
+    const riasecEl = document.getElementById('riasec-'+i);
+    if (rv) {
+      const canonicalKey = findCanonicalKey(rv, RIASEC_LOOKUP);
+      const desc = canonicalKey ? DESCRIPTIONS.RIASEC[canonicalKey][lang] : '';
+      riasecEl.innerHTML = `${MEDALS[i-1]} <strong>${trans(rv, lang)}</strong>` +
+        (desc ? `<span class="result-desc">${desc}</span>` : '');
+    } else {
+      riasecEl.textContent = '';
+    }
+
     const iv = intelItems[i-1];
-    document.getElementById('intel-'+i).textContent  = iv ? MEDALS[i-1]+' '+trans(iv, lang) : '';
+    const intelEl = document.getElementById('intel-'+i);
+    if (iv) {
+      const canonicalKey = findCanonicalKey(iv, INTEL_LOOKUP);
+      const desc = canonicalKey ? DESCRIPTIONS.Intelligences[canonicalKey][lang] : '';
+      intelEl.innerHTML = `${MEDALS[i-1]} <strong>${trans(iv, lang)}</strong>` +
+        (desc ? `<span class="result-desc">${desc}</span>` : '');
+    } else {
+      intelEl.textContent = '';
+    }
   });
 
   document.getElementById('choix-pro').innerHTML = parseChoix(RAW.choix, lang);
