@@ -87,6 +87,7 @@
   }
   .print-btn:hover { background: #2c5282; }
   
+  /* ── Grille Visuelle Universelle ── */
   .portfolio-grid {
     display: flex;
     gap: 12px;
@@ -115,6 +116,7 @@
     color: #334155;
   }
 
+  /* ── Lang bar ── */
   .lang-bar {
     display: flex;
     gap: 8px;
@@ -139,6 +141,7 @@
     border-color: #1A3557;
   }
 
+  /* RTL support */
   .page[dir="rtl"] .result-line,
   .page[dir="rtl"] .choix-text { padding-left: 0; padding-right: 4pt; }
   .page[dir="rtl"] .info-row,
@@ -213,6 +216,7 @@
 </div>
 
 <script>
+// Dictionnaire complet des descriptions
 const DESCRIPTIONS = {
   "RIASEC": {
     "Réaliste": {"fr": "Tu aimes travailler avec des outils, des machines, des plantes ou des animaux.", "ar": "تحب العمل مع الأدوات أو الآلات أو النباتات أو الحيوانات.", "en": "You like working with tools, machines, plants, or animals."},
@@ -266,6 +270,7 @@ const RAW_FR = {
   'prix scolaire': 'Prix scolaire', 'réussite sportive': 'Réussite sportive', 'art / musique': 'Art / Musique', 'projet scolaire': 'Projet scolaire', 'projet scolaire ou scientifique': 'Projet scolaire', 'bénévolat': 'Bénévolat', 'bénévolat / service à la communauté': 'Bénévolat', 'leadership': 'Leadership', 'apprentissage d\'une langue': 'Langue étrangère', 'création': 'Création (art, dessin...)', 'création (art, dessin...)': 'Création (art, dessin...)', 'autres': 'Autres'
 };
 
+// ─── UI translations ───────────────────────────────────────────────────────
 const UI = {
   fr: {
     dir: 'ltr', htmlLang: 'fr', mainTitle: '🎓 FICHE DE RÉSULTATS D\'ORIENTATION', tInfo: '👤 Informations personnelles',
@@ -294,15 +299,18 @@ const UI = {
   }
 };
 
+// ─── Fonction de lecture URL SUPER INTELLIGENTE ────────────────────────────
 function getParam(name) {
   const aliases = {
     nom: ['الإسم','nom','name'], age: ['العمر','age'], ecole: ['ecole','school','مدرسة'],
     classe: ['الصف','classe','class'], car: ['صفاتي','car','chars'], int: ['إهتماماتي','int','interests'],
     comp: ['مهاراتي','comp','skills'], val: ['قيمي','val','values'], 
-    real: ['realisations','real','achievements','real'],
+    real: ['realisations','real','achievements','real'], // Accepte Majuscules et Minuscules
     riasec: ['إختبارriasec','riasec'], intel: ['إختبارintel','intel'], choix: ['مهنتي','choix','pro']
   };
   const p = new URLSearchParams(window.location.search);
+  
+  // Cherche le mot clé sans se soucier des majuscules (ex: ?Real=... ou ?real=...)
   for (const [key, value] of p.entries()) {
      if (aliases[name].includes(key.toLowerCase())) {
          return decodeURIComponent(value.trim());
@@ -318,13 +326,17 @@ const RAW = {
   riasec: getParam('riasec'), intel: getParam('intel'), choix: getParam('choix')
 };
 
+// ─── Traductions & Images ──────────────────────────────────────────────────
 function trans(term, lang) {
   const t = term.trim();
   const tLower = t.toLowerCase();
+  
+  // Gère "Autres : précision"
   if (tLower.startsWith('autres :')) {
      const prefix = lang === 'ar' ? 'أخرى :' : lang === 'en' ? 'Other :' : 'Autres :';
      return prefix + t.substring(8);
   }
+
   if (lang === 'ar') return RAW_AR[tLower] || t;
   if (lang === 'en') return RAW_EN[tLower] || t;
   return RAW_FR[tLower] || t;
@@ -341,6 +353,9 @@ function parseMedals(raw) {
   return raw.replace(/🥇|🥈|🥉/g, '|').split('|').map(s => s.trim()).filter(Boolean);
 }
 
+// ─── Normalisation des clés RIASEC / Intelligences ─────────────────────────
+// Permet de retrouver la bonne entrée dans DESCRIPTIONS même si le texte transmis
+// dans l'URL a une casse, des accents ou une orthographe légèrement différente.
 function stripAccents(str) {
   return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
@@ -360,6 +375,7 @@ function findCanonicalKey(term, lookup) {
   if (!term) return null;
   const normalized = stripAccents(term.trim()).toLowerCase();
   if (lookup[normalized]) return lookup[normalized];
+  // Recherche partielle si aucune correspondance exacte (ex: "logico mathematique")
   const match = Object.keys(lookup).find(k => k.startsWith(normalized) || normalized.startsWith(k));
   return match ? lookup[match] : null;
 }
@@ -397,8 +413,11 @@ function fillPortfolioGrid(gridId, rawText, lang) {
     return;
   }
   
-  // Here is the big fix: Split using | instead of a comma. 
-  const items = rawText.split('|').map(s => s.trim()).filter(Boolean);
+  // MAGIE : Remplace temporairement la virgule dans le texte problématique
+  // pour empêcher la fonction .split(',') de le couper en deux morceaux !
+  let safeText = rawText.replace(/Création \(art, dessin\.\.\.\)/gi, 'Création_Art_Dessin');
+  
+  const items = safeText.split(',').map(s => s.trim()).filter(Boolean);
   
   if (items.length === 0) {
     grid.innerHTML = '<div style="color:#999; padding-left:4px;">—</div>';
@@ -406,11 +425,19 @@ function fillPortfolioGrid(gridId, rawText, lang) {
   }
   
   grid.innerHTML = items.map(rawItem => {
-    let imgKey = rawItem;
-    if (rawItem.toLowerCase().startsWith('autres :')) {
+    // Si on trouve notre mot secret temporaire, on le remet à la normale
+    let cleanItem = rawItem;
+    if (cleanItem === 'Création_Art_Dessin') {
+        cleanItem = 'Création (art, dessin...)';
+    }
+    
+    // Si la personne a précisé autre chose, on affiche l'image par défaut
+    let imgKey = cleanItem;
+    if (cleanItem.toLowerCase().startsWith('autres :')) {
         imgKey = 'Autres';
     }
-    const translatedText = trans(rawItem, lang);
+    
+    const translatedText = trans(cleanItem, lang);
     const imgFile = getImg(imgKey);
     return `
       <div class="portfolio-card">
@@ -447,6 +474,7 @@ function setLang(lang) {
   document.getElementById('t-real-title').textContent = u.tReal;
   document.querySelectorAll('.print-label,[id=btn-print-label]').forEach(el => el.textContent = u.tPrint);
 
+  // Remplissage Parfait
   fillPortfolioGrid('grid-car', RAW.car, lang);
   fillPortfolioGrid('grid-int', RAW.int, lang);
   fillPortfolioGrid('grid-comp', RAW.comp, lang);
