@@ -12,142 +12,24 @@
     .page { box-shadow: none; margin: 0; width: 100%; padding: 0; }
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: "Segoe UI", Arial, sans-serif;
-    font-size: 10pt;
-    background: #f0f0f0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  .page {
-    background: white;
-    width: 210mm;
-    min-height: 297mm;
-    padding: 1.5cm 1.8cm;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-    margin-bottom: 20px;
-  }
-  .header {
-    text-align: center;
-    font-size: 13pt;
-    font-weight: bold;
-    margin-bottom: 4pt;
-    letter-spacing: 0.5px;
-  }
-  hr.divider {
-    border: none;
-    border-top: 1.5px solid black;
-    margin: 6pt 0;
-  }
-  .section-title {
-    font-size: 11pt;
-    font-weight: bold;
-    line-height: 1.4;
-    margin-top: 8pt;
-    margin-bottom: 4pt;
-  }
-  .info-row { font-size: 10pt; line-height: 1.4; }
-  .field-label {
-    font-weight: bold;
-    font-size: 10pt;
-    margin-top: 6pt;
-    margin-bottom: 4pt;
-    display: block;
-  }
-  .result-line {
-    font-size: 10pt;
-    font-weight: normal;
-    line-height: 1.5;
-    padding-left: 4pt;
-    margin-bottom: 4pt;
-  }
-  .result-line strong { font-weight: 700; }
-  .result-desc {
-    display: block;
-    font-size: 9pt;
-    color: #555;
-    font-weight: normal;
-    margin-top: 1pt;
-  }
-  .choix-text { font-size: 10pt; line-height: 1.4; padding-left: 4pt; }
-  .choix-text div { margin-bottom: 1pt; }
-  
-  .print-btn {
-    background: #1A3557;
-    color: white;
-    border: none;
-    padding: 10px 28px;
-    font-size: 11pt;
-    border-radius: 6px;
-    cursor: pointer;
-    margin: 14px 6px;
-    font-family: Arial, sans-serif;
-  }
-  .print-btn:hover { background: #2c5282; }
-  
-  /* ── Grille Visuelle Universelle ── */
-  .portfolio-grid {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin: 6pt 0 10pt 0;
-  }
-  .portfolio-card {
-    width: calc(33.33% - 8px);
-    border: 1px solid #e2e8f0;
-    padding: 8px;
-    border-radius: 6px;
-    text-align: center;
-    background: #f8fafc;
-    page-break-inside: avoid;
-  }
-  .portfolio-card img {
-    width: 100%;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 4px;
-    margin-bottom: 6px;
-  }
-  .card-text {
-    font-size: 9.5pt;
-    font-weight: 600;
-    color: #334155;
-  }
-
-  /* ── Lang bar ── */
-  .lang-bar {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 10px 0;
-  }
-  .lang-btn {
-    padding: 6px 18px;
-    border: 1.5px solid #aaa;
-    border-radius: 20px;
-    background: #fff;
-    color: #444;
-    cursor: pointer;
-    font-size: 12pt;
-    font-family: Arial, sans-serif;
-    transition: all .15s;
-  }
-  .lang-btn.active {
-    background: #1A3557;
-    color: #fff;
-    border-color: #1A3557;
-  }
-
-  /* RTL support */
-  .page[dir="rtl"] .result-line,
-  .page[dir="rtl"] .choix-text { padding-left: 0; padding-right: 4pt; }
-  .page[dir="rtl"] .info-row,
-  .page[dir="rtl"] .section-title,
-  .page[dir="rtl"] .field-label,
-  .page[dir="rtl"] .header { text-align: right; }
+  body { font-family: "Segoe UI", Arial, sans-serif; font-size: 10pt; background: #f0f0f0; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+  .page { background: white; width: 210mm; min-height: 297mm; padding: 1.5cm 1.8cm; box-shadow: 0 4px 20px rgba(0,0,0,0.15); margin-bottom: 20px; }
+  .header { text-align: center; font-size: 13pt; font-weight: bold; margin-bottom: 4pt; }
+  hr.divider { border: none; border-top: 1.5px solid black; margin: 6pt 0; }
+  .section-title { font-size: 11pt; font-weight: bold; margin-top: 8pt; margin-bottom: 4pt; }
+  .field-label { font-weight: bold; font-size: 10pt; margin-top: 6pt; margin-bottom: 4pt; display: block; }
+  .result-line { font-size: 10pt; line-height: 1.4; padding-left: 4pt; margin-bottom: 5pt; }
+  .desc-text { font-size: 9pt; font-style: italic; color: #555; display: block; margin-top: 2pt; margin-bottom: 10px; }
+  .portfolio-grid { display: flex; gap: 12px; flex-wrap: wrap; margin: 6pt 0 10pt 0; }
+  .portfolio-card { width: calc(33.33% - 8px); border: 1px solid #e2e8f0; padding: 8px; border-radius: 6px; text-align: center; background: #f8fafc; }
+  .portfolio-card img { width: 100%; height: 80px; object-fit: cover; border-radius: 4px; margin-bottom: 6px; }
+  .card-text { font-size: 9.5pt; font-weight: 600; color: #334155; }
+  .lang-bar { display: flex; gap: 8px; justify-content: center; margin: 10px 0; }
+  .lang-btn { padding: 6px 18px; border: 1.5px solid #aaa; border-radius: 20px; background: #fff; cursor: pointer; font-size: 12pt; }
+  .lang-btn.active { background: #1A3557; color: #fff; border-color: #1A3557; }
+  .print-btn { background: #1A3557; color: white; border: none; padding: 10px 28px; font-size: 11pt; border-radius: 6px; cursor: pointer; margin: 14px 6px; font-family: Arial, sans-serif; }
+  .page[dir="rtl"] .result-line { text-align: right; padding-left: 0; padding-right: 4pt; }
+  .page[dir="rtl"] .section-title, .page[dir="rtl"] .field-label, .page[dir="rtl"] .info-row { text-align: right; }
   .page[dir="rtl"] .portfolio-grid { direction: rtl; }
 </style>
 </head>
@@ -163,10 +45,8 @@
 </div>
 
 <div class="page" id="page">
-
   <div class="header" id="main-title">🎓 FICHE DE RESULTATS D'ORIENTATION</div>
   <hr class="divider">
-
   <div class="section-title" id="t-info">👤 Informations personnelles</div>
   <p class="info-row"><strong id="t-nom-label">Nom</strong> : <span id="nom">—</span></p>
   <p class="info-row"><strong id="t-age-label">Âge</strong> : <span id="age">—</span> <span id="t-ans">ans</span></p>
@@ -174,49 +54,35 @@
   <p class="info-row"><strong id="t-classe-label">Classe</strong> : <span id="classe">—</span></p>
 
   <hr class="divider">
-
   <div class="section-title" id="t-portfolio">📋 Mon Portfolio</div>
-
   <span class="field-label" id="t-car-label">Tes caractéristiques sont :</span>
   <div class="portfolio-grid" id="grid-car"></div>
-
   <span class="field-label" id="t-int-label">Tes centres d'intérêts sont :</span>
   <div class="portfolio-grid" id="grid-int"></div>
-
   <span class="field-label" id="t-comp-label">Tes compétences sont :</span>
   <div class="portfolio-grid" id="grid-comp"></div>
-
   <span class="field-label" id="t-val-label">Tes valeurs sont :</span>
   <div class="portfolio-grid" id="grid-val"></div>
 
   <hr class="divider">
-  
   <div class="section-title" id="t-real-title">🏆 Mes Réalisations</div>
   <div class="portfolio-grid" id="grid-real"></div>
 
   <hr class="divider">
-
-  <div class="section-title" id="t-riasec-title">🔬 Mon profil RIASEC (Top 3)</div>
-  <div class="result-line" id="riasec-1"></div>
-  <div class="result-line" id="riasec-2"></div>
-  <div class="result-line" id="riasec-3"></div>
+  <div class="section-title" id="t-riasec-title">🔬 Mon profil RIASEC</div>
+  <div id="riasec-list"></div>
 
   <hr class="divider">
-
-  <div class="section-title" id="t-intel-title">🧠 Mes intelligences dominantes (Top 3)</div>
-  <div class="result-line" id="intel-1"></div>
-  <div class="result-line" id="intel-2"></div>
-  <div class="result-line" id="intel-3"></div>
+  <div class="section-title" id="t-intel-title">🧠 Mes intelligences dominantes</div>
+  <div id="intel-list"></div>
 
   <hr class="divider">
-
   <div class="section-title" id="t-pro-title">🎯 Choix professionnel</div>
-  <div class="choix-text" id="choix-pro"></div>
-
+  <div id="choix-pro"></div>
 </div>
 
 <script>
-// Dictionnaire complet des descriptions
+// --- DICTIONNAIRE DES DESCRIPTIONS ---
 const DESCRIPTIONS = {
   "RIASEC": {
     "Réaliste": {"fr": "Tu aimes travailler avec des outils, des machines, des plantes ou des animaux.", "ar": "تحب العمل مع الأدوات أو الآلات أو النباتات أو الحيوانات.", "en": "You like working with tools, machines, plants, or animals."},
@@ -238,7 +104,8 @@ const DESCRIPTIONS = {
   }
 };
 
-const RAW_IMAGES = {
+// --- DICTIONNAIRE DES IMAGES ---
+const ITEM_IMAGES = {
   'ambitieux(se)': 'ambitieux.jpg', 'créatif(ve)': 'creatif.jpg', 'organisé(e)': 'organise.jpg', 'persévérant(e)': 'Perseverant.jpg', 'sociable': 'sociable.jpg', 'responsable': 'responsable.jpg', 'indépendant(e)': 'freelancer.jpg', 'calme': 'calme.jpg', 'empathique': 'empathique.jpg', 'attentif(ve)': 'attentive.jpg', 'honnête': 'honnete.jpg', 'curieux': 'curieux.jpg', 'méticuleux': 'meticuleux.jpg', 'coopérant': 'cooperant.jpg', 'timide': 'timide.jpg',
   'sciences et recherche': 'SciencesandResearch.jpg', 'technologie et informatique': 'info.jpg', 'santé et aide aux personnes': 'HealthandHelpingPeople.jpg', 'arts et création': 'artetcreation.jpg', 'commerce et entrepreneuriat': 'commerce_entrepreneuriat.jpg', 'nature et environnement': 'nature.jpg', 'communication et médias': 'communicationetmedias.jpg', 'gestion et organisation': 'ManagementandOrganization.jpg', 'travail manuel (avec les mains)': 'travailmanuel.jpg', 'éducation et formation': 'Education-and-training.jpg', 'activités culinaires': 'cuisine.jpg',
   'théatre': 'theatre.jpg', 'théâtre': 'theatre.jpg', 'sport': 'sport.jpg', 'cuisiner': 'cooking.jpg', 'cuisinier': 'cooking.jpg', 'résolution de problèmes': 'Creative-Problem-Solving-Process.jpg', 'jeux de société': 'boardgames.jpg', 'créativité': 'creativity.jpg', 'organisation': 'organization.jpg', 'jeux stratégiques': 'Jeux_strategiques.jpg', 'compétences numériques': 'DigitalSkills.jpg', 'langue étrangère': 'language.jpg', 'jeux de construction': 'lego.jpg', 'robotiques': 'robotiques.jpg', 'dessin': 'finirundessin.jpg',
@@ -246,6 +113,7 @@ const RAW_IMAGES = {
   'prix scolaire': 'award.jpg', 'réussite sportive': 'sport1.jpg', 'art / musique': 'art.jpg', 'projet scolaire': 'project.jpg', 'projet scolaire ou scientifique': 'project.jpg', 'bénévolat': 'volunteer.jpg', 'bénévolat / service à la communauté': 'volunteer.jpg', 'leadership': 'leader.jpg', 'apprentissage d\'une langue': 'language.jpg', 'création': 'creatif.jpg', 'création (art, dessin...)': 'creatif.jpg', 'autres': 'other.jpg'
 };
 
+// --- DICTIONNAIRES DE TRADUCTION ---
 const RAW_AR = {
   'ambitieux(se)': 'طموح/ة', 'créatif(ve)': 'مبدع/ة', 'organisé(e)': 'منظّم/ة', 'persévérant(e)': 'مثابر/ة', 'sociable': 'اجتماعي/ة', 'responsable': 'مسؤول/ة', 'indépendant(e)': 'مستقل/ة', 'calme': 'هادئ/ة', 'empathique': 'متعاطف/ة', 'attentif(ve)': 'منتبه/ة', 'honnête': 'صادق/ة', 'curieux': 'فضولي/ة', 'méticuleux': 'دقيق/ة', 'coopérant': 'متعاون/ة', 'timide': 'خجول/ة',
   'sciences et recherche': 'العلوم والبحث', 'technologie et informatique': 'التكنولوجيا والمعلوماتية', 'santé et aide aux personnes': 'الصحة ومساعدة الناس', 'arts et création': 'الفنون والإبداع', 'commerce et entrepreneuriat': 'التجارة وريادة الأعمال', 'nature et environnement': 'الطبيعة والبيئة', 'communication et médias': 'التواصل والإعلام', 'gestion et organisation': 'الإدارة والتنظيم', 'travail manuel (avec les mains)': 'العمل اليدوي', 'éducation et formation': 'التعليم والتكوين', 'activités culinaires': 'الأنشطة الطهوية',
@@ -253,7 +121,6 @@ const RAW_AR = {
   'respect': 'الاحترام', 'indépendance': 'الاستقلالية', 'aider les autres': 'مساعدة الآخرين', 'prestige': 'المكانة', 'sécurité financière': 'الأمن المالي', 'liberté du temps': 'حرية الوقت', 'travail en équipe': 'العمل الجماعي', 'défi intellectuel': 'التحدي الفكري', 'impact social': 'الأثر الاجتماعي', 'aventure': 'المغامرة',
   'prix scolaire': 'جائزة مدرسية', 'réussite sportive': 'إنجاز رياضي', 'art / musique': 'فن / موسيقى', 'projet scolaire': 'مشروع مدرسي أو علمي', 'projet scolaire ou scientifique': 'مشروع مدرسي أو علمي', 'bénévolat': 'تطوّع / خدمة المجتمع', 'bénévolat / service à la communauté': 'تطوّع / خدمة المجتمع', 'leadership': 'القيادة', 'apprentissage d\'une langue': 'تعلّم لغة جديدة', 'création': 'إبداع (رسم، كتابة، حرف يدوية...)', 'création (art, dessin...)': 'إبداع (رسم، كتابة، حرف يدوية...)', 'autres': 'أخرى'
 };
-
 const RAW_EN = {
   'ambitieux(se)': 'Ambitious', 'créatif(ve)': 'Creative', 'organisé(e)': 'Organized', 'persévérant(e)': 'Persevering', 'sociable': 'Sociable', 'responsable': 'Responsible', 'indépendant(e)': 'Independent', 'calme': 'Calm', 'empathique': 'Empathetic', 'attentif(ve)': 'Attentive', 'honnête': 'Honest', 'curieux': 'Curious', 'méticuleux': 'Meticulous', 'coopérant': 'Cooperative', 'timide': 'Shy',
   'sciences et recherche': 'Sciences and Research', 'technologie et informatique': 'Technology and Computing', 'santé et aide aux personnes': 'Health and Helping People', 'arts et création': 'Arts and Creation', 'commerce et entrepreneuriat': 'Business and Entrepreneurship', 'nature et environnement': 'Nature and Environment', 'communication et médias': 'Communication and Media', 'gestion et organisation': 'Management and Organization', 'travail manuel (avec les mains)': 'Manual Work', 'éducation et formation': 'Education and Training', 'activités culinaires': 'Culinary Activities',
@@ -261,7 +128,6 @@ const RAW_EN = {
   'respect': 'Respect', 'indépendance': 'Independence', 'aider les autres': 'Helping Others', 'prestige': 'Prestige', 'sécurité financière': 'Financial Security', 'liberté du temps': 'Time Freedom', 'travail en équipe': 'Teamwork', 'défi intellectuel': 'Intellectual Challenge', 'impact social': 'Social Impact', 'aventure': 'Adventure',
   'prix scolaire': 'School award', 'réussite sportive': 'Sports achievement', 'art / musique': 'Art / Music', 'projet scolaire': 'School or science project', 'projet scolaire ou scientifique': 'School or science project', 'bénévolat': 'Volunteering / Community service', 'bénévolat / service à la communauté': 'Volunteering / Community service', 'leadership': 'Leadership', 'apprentissage d\'une langue': 'Learning a new language', 'création': 'Creation (drawing, writing, crafts...)', 'création (art, dessin...)': 'Creation (drawing, writing, crafts...)', 'autres': 'Other'
 };
-
 const RAW_FR = {
   'ambitieux(se)': 'Ambitieux(se)', 'créatif(ve)': 'Créatif(ve)', 'organisé(e)': 'Organisé(e)', 'persévérant(e)': 'Persévérant(e)', 'sociable': 'Sociable', 'responsable': 'Responsable', 'indépendant(e)': 'Indépendant(e)', 'calme': 'Calme', 'empathique': 'Empathique', 'attentif(ve)': 'Attentif(ve)', 'honnête': 'Honnête', 'curieux': 'Curieux', 'méticuleux': 'Méticuleux', 'coopérant': 'Coopérant', 'timide': 'Timide',
   'sciences et recherche': 'Sciences et recherche', 'technologie et informatique': 'Technologie et informatique', 'santé et aide aux personnes': 'Santé et aide aux personnes', 'arts et création': 'Arts et création', 'commerce et entrepreneuriat': 'Commerce et entrepreneuriat', 'nature et environnement': 'Nature et environnement', 'communication et médias': 'Communication et médias', 'gestion et organisation': 'Gestion et organisation', 'travail manuel (avec les mains)': 'Travail manuel (avec les mains)', 'éducation et formation': 'Éducation et formation', 'activités culinaires': 'Activités culinaires',
@@ -270,72 +136,36 @@ const RAW_FR = {
   'prix scolaire': 'Prix scolaire', 'réussite sportive': 'Réussite sportive', 'art / musique': 'Art / Musique', 'projet scolaire': 'Projet scolaire', 'projet scolaire ou scientifique': 'Projet scolaire', 'bénévolat': 'Bénévolat', 'bénévolat / service à la communauté': 'Bénévolat', 'leadership': 'Leadership', 'apprentissage d\'une langue': 'Langue étrangère', 'création': 'Création (art, dessin...)', 'création (art, dessin...)': 'Création (art, dessin...)', 'autres': 'Autres'
 };
 
-// ─── UI translations ───────────────────────────────────────────────────────
 const UI = {
-  fr: {
-    dir: 'ltr', htmlLang: 'fr', mainTitle: '🎓 FICHE DE RÉSULTATS D\'ORIENTATION', tInfo: '👤 Informations personnelles',
-    tNom: 'Nom', tAge: 'Âge', tAns: 'ans', tEcole: 'École', tClasse: 'Classe', tPortfolio: '📋 Mon Portfolio',
-    tCar: 'Tes caractéristiques sont :', tInt: "Tes centres d'intérêts sont :", tComp: 'Tes compétences sont :', 
-    tVal: 'Tes valeurs sont :', tRiasec: '🔬 Mon profil RIASEC (Top 3)', tIntel: '🧠 Mes intelligences dominantes (Top 3)', 
-    tPro: '🎯 Choix professionnel', tReal: '🏆 Mes Réalisations', tPrint: 'Imprimer / Enregistrer en PDF',
-    proHas: 'Choix professionnel', proJob: 'Métier', proSubjects: 'Matières',
-    proKnows: 'Connaît quelqu\'un dans ce domaine', proHelp: 'Peut aider', yes: 'Oui', no: 'Non'
-  },
-  ar: {
-    dir: 'rtl', htmlLang: 'ar', mainTitle: '🎓 بطاقة نتائج التوجيه المهني', tInfo: '👤 المعلومات الشخصية',
-    tNom: 'الاسم', tAge: 'العمر', tAns: 'سنة', tEcole: 'المدرسة', tClasse: 'الصف', tPortfolio: '📋 ملفي الشخصي', 
-    tCar: 'خصائصي الشخصية :', tInt: 'اهتماماتي :', tComp: 'مهاراتي :', tVal: 'قيمي :', 
-    tRiasec: '🔬 نموذج RIASEC (أعلى 3)', tIntel: '🧠 أنواع ذكائي الغالب (أعلى 3)', tPro: '🎯 الاختيار المهني',
-    tReal: '🏆 إنجازاتي', tPrint: 'طباعة / حفظ كـ PDF', proHas: 'لديه اختيار مهني', proJob: 'المهنة', proSubjects: 'المواد',
-    proKnows: 'يعرف شخصًا في هذا المجال', proHelp: 'يمكنه المساعدة', yes: 'نعم', no: 'لا'
-  },
-  en: {
-    dir: 'ltr', htmlLang: 'en', mainTitle: '🎓 CAREER GUIDANCE RESULTS', tInfo: '👤 Personal Information',
-    tNom: 'Name', tAge: 'Age', tAns: 'years old', tEcole: 'School', tClasse: 'Class', tPortfolio: '📋 My Portfolio', 
-    tCar: 'My characteristics:', tInt: 'My interests:', tComp: 'My skills:', tVal: 'My values:', 
-    tRiasec: '🔬 My RIASEC Profile (Top 3)', tIntel: '🧠 My Dominant Intelligence Types (Top 3)', tPro: '🎯 Professional Choice',
-    tReal: '🏆 My Achievements', tPrint: 'Print / Save as PDF', proHas: 'Professional choice', proJob: 'Career', proSubjects: 'Subjects',
-    proKnows: 'Knows someone in this field', proHelp: 'Can help', yes: 'Yes', no: 'No'
-  }
+  fr: { dir: 'ltr', htmlLang: 'fr', mainTitle: '🎓 FICHE DE RÉSULTATS D\'ORIENTATION', tInfo: '👤 Informations personnelles', tNom: 'Nom', tAge: 'Âge', tAns: 'ans', tEcole: 'École', tClasse: 'Classe', tPortfolio: '📋 Mon Portfolio', tCar: 'Tes caractéristiques sont :', tInt: "Tes centres d'intérêts sont :", tComp: 'Tes compétences sont :', tVal: 'Tes valeurs sont :', tRiasec: '🔬 Mon profil RIASEC', tIntel: '🧠 Mes intelligences dominantes', tPro: '🎯 Choix professionnel', tReal: '🏆 Mes Réalisations', tPrint: 'Imprimer / Enregistrer en PDF', proHas: 'Choix professionnel', proJob: 'Métier', proSubjects: 'Matières', proKnows: 'Connaît quelqu\'un dans ce domaine', proHelp: 'Peut aider' },
+  ar: { dir: 'rtl', htmlLang: 'ar', mainTitle: '🎓 بطاقة نتائج التوجيه المهني', tInfo: '👤 المعلومات الشخصية', tNom: 'الاسم', tAge: 'العمر', tAns: 'سنة', tEcole: 'المدرسة', tClasse: 'الصف', tPortfolio: '📋 ملفي الشخصي', tCar: 'خصائصي الشخصية :', tInt: 'اهتماماتي :', tComp: 'مهاراتي :', tVal: 'قيمي :', tRiasec: '🔬 نموذج RIASEC', tIntel: '🧠 أنواع ذكائي الغالب', tPro: '🎯 الاختيار المهني', tReal: '🏆 إنجازاتي', tPrint: 'طباعة / حفظ كـ PDF', proHas: 'لديه اختيار مهني', proJob: 'المهنة', proSubjects: 'المواد', proKnows: 'يعرف شخصًا في هذا المجال', proHelp: 'يمكنه المساعدة' },
+  en: { dir: 'ltr', htmlLang: 'en', mainTitle: '🎓 CAREER GUIDANCE RESULTS', tInfo: '👤 Personal Information', tNom: 'Name', tAge: 'Age', tAns: 'years old', tEcole: 'School', tClasse: 'Class', tPortfolio: '📋 My Portfolio', tCar: 'My characteristics:', tInt: 'My interests:', tComp: 'My skills:', tVal: 'My values:', tRiasec: '🔬 My RIASEC Profile', tIntel: '🧠 My Dominant Intelligence Types', tPro: '🎯 Professional Choice', tReal: '🏆 My Achievements', tPrint: 'Print / Save as PDF', proHas: 'Professional choice', proJob: 'Career', proSubjects: 'Subjects', proKnows: 'Knows someone in this field', proHelp: 'Can help' }
 };
 
-// ─── Fonction de lecture URL SUPER INTELLIGENTE ────────────────────────────
+// --- LOGIQUE DE LECTURE DU LIEN ---
 function getParam(name) {
-  const aliases = {
-    nom: ['الإسم','nom','name'], age: ['العمر','age'], ecole: ['ecole','school','مدرسة'],
-    classe: ['الصف','classe','class'], car: ['صفاتي','car','chars'], int: ['إهتماماتي','int','interests'],
-    comp: ['مهاراتي','comp','skills'], val: ['قيمي','val','values'], 
-    real: ['realisations','real','achievements','real'], // Accepte Majuscules et Minuscules
-    riasec: ['إختبارriasec','riasec'], intel: ['إختبارintel','intel'], choix: ['مهنتي','choix','pro']
-  };
+  const aliases = { nom: ['nom'], age: ['age'], ecole: ['ecole'], classe: ['classe'], car: ['car'], int: ['int'], comp: ['comp'], val: ['val'], real: ['real'], riasec: ['riasec'], intel: ['intel'], choix: ['choix'] };
   const p = new URLSearchParams(window.location.search);
-  
-  // Cherche le mot clé sans se soucier des majuscules (ex: ?Real=... ou ?real=...)
   for (const [key, value] of p.entries()) {
-     if (aliases[name].includes(key.toLowerCase())) {
-         return decodeURIComponent(value.trim());
-     }
+    if (aliases[name].includes(key.toLowerCase())) return decodeURIComponent(value.trim());
   }
   return '';
 }
 
 const RAW = {
   nom: getParam('nom'), age: getParam('age'), ecole: getParam('ecole'), classe: getParam('classe'),
-  car: getParam('car'), int: getParam('int'), comp: getParam('comp'), val: getParam('val'),
-  real: getParam('real'),
+  car: getParam('car'), int: getParam('int'), comp: getParam('comp'), val: getParam('val'), real: getParam('real'),
   riasec: getParam('riasec'), intel: getParam('intel'), choix: getParam('choix')
 };
 
-// ─── Traductions & Images ──────────────────────────────────────────────────
+// --- TRADUCTION ET EXTRACTION DU TEXTE "AUTRES" ---
 function trans(term, lang) {
   const t = term.trim();
   const tLower = t.toLowerCase();
   
-  // Gère "Autres : précision"
-  if (tLower.startsWith('autres :')) {
-     const prefix = lang === 'ar' ? 'أخرى :' : lang === 'en' ? 'Other :' : 'Autres :';
-     return prefix + t.substring(8);
-  }
+  // MAGIE : Si le mot commence par "Autres :" ou "Autres:", on garde juste le mot tapé par l'élève !
+  if (tLower.startsWith('autres :')) return t.substring(8).trim();
+  if (tLower.startsWith('autres:')) return t.substring(7).trim();
 
   if (lang === 'ar') return RAW_AR[tLower] || t;
   if (lang === 'en') return RAW_EN[tLower] || t;
@@ -344,101 +174,32 @@ function trans(term, lang) {
 
 function getImg(term) {
   const tLower = term.trim().toLowerCase();
-  if (tLower.startsWith('autres')) return 'other.jpg';
-  return RAW_IMAGES[tLower] || 'other.jpg';
-}
-
-function parseMedals(raw) {
-  if (!raw) return [];
-  return raw.replace(/🥇|🥈|🥉/g, '|').split('|').map(s => s.trim()).filter(Boolean);
-}
-
-// ─── Normalisation des clés RIASEC / Intelligences ─────────────────────────
-// Permet de retrouver la bonne entrée dans DESCRIPTIONS même si le texte transmis
-// dans l'URL a une casse, des accents ou une orthographe légèrement différente.
-function stripAccents(str) {
-  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-}
-
-function buildLookup(dict) {
-  const map = {};
-  Object.keys(dict).forEach(key => {
-    map[stripAccents(key).toLowerCase()] = key;
-  });
-  return map;
-}
-
-const RIASEC_LOOKUP = buildLookup(DESCRIPTIONS.RIASEC);
-const INTEL_LOOKUP  = buildLookup(DESCRIPTIONS.Intelligences);
-
-function findCanonicalKey(term, lookup) {
-  if (!term) return null;
-  const normalized = stripAccents(term.trim()).toLowerCase();
-  if (lookup[normalized]) return lookup[normalized];
-  // Recherche partielle si aucune correspondance exacte (ex: "logico mathematique")
-  const match = Object.keys(lookup).find(k => k.startsWith(normalized) || normalized.startsWith(k));
-  return match ? lookup[match] : null;
+  if (tLower.startsWith('autres')) return 'other.jpg'; // Affiche l'image bleue si c'est "Autres"
+  return ITEM_IMAGES[tLower] || 'other.jpg';
 }
 
 function parseChoix(raw, lang) {
   if (!raw) return '—';
-  const u = UI[lang];
   const segments = raw.split('|').map(s => s.trim()).filter(Boolean);
-  const lines = [];
-  segments.forEach(seg => {
-    const low = seg.toLowerCase();
-    if (low === 'oui' || low === 'non' || low === 'yes' || low === 'no') {
-      lines.push(`<div><strong>${u.proHas} :</strong> ${trans(seg, lang)}</div>`);
-    } else if (/^m[eé]tier/i.test(low)) {
-      lines.push(`<div><strong>${u.proJob} :</strong> ${seg.replace(/^m[eé]tier\s*[:=]\s*/i,'')}</div>`);
-    } else if (/^mati[eè]res/i.test(low)) {
-      lines.push(`<div><strong>${u.proSubjects} :</strong> ${seg.replace(/^mati[eè]res\s*[:=]\s*/i,'')}</div>`);
-    } else if (/^connait/i.test(low) || /^knows/i.test(low)) {
-      const val = seg.replace(/^[^:=]+[:=]\s*/,'');
-      lines.push(`<div><strong>${u.proKnows} :</strong> ${trans(val, lang)}</div>`);
-    } else if (/^peut aider/i.test(low) || /^can help/i.test(low)) {
-      const val = seg.replace(/^[^:=]+[:=]\s*/,'');
-      lines.push(`<div><strong>${u.proHelp} :</strong> ${trans(val, lang)}</div>`);
-    } else {
-      lines.push(`<div>${seg}</div>`);
-    }
-  });
-  return lines.join('') || '—';
+  return segments.map(seg => `<div>${seg}</div>`).join('');
 }
 
 function fillPortfolioGrid(gridId, rawText, lang) {
   const grid = document.getElementById(gridId);
-  if (!rawText) {
-    grid.innerHTML = '<div style="color:#999; padding-left:4px;">—</div>';
-    return;
-  }
+  if (!rawText) { grid.innerHTML = '<div style="color:#999;">—</div>'; return; }
   
-  // MAGIE : Remplace temporairement la virgule dans le texte problématique
-  // pour empêcher la fonction .split(',') de le couper en deux morceaux !
   let safeText = rawText.replace(/Création \(art, dessin\.\.\.\)/gi, 'Création_Art_Dessin');
-  
   const items = safeText.split(',').map(s => s.trim()).filter(Boolean);
   
-  if (items.length === 0) {
-    grid.innerHTML = '<div style="color:#999; padding-left:4px;">—</div>';
-    return;
-  }
+  if (items.length === 0) { grid.innerHTML = '<div style="color:#999;">—</div>'; return; }
   
   grid.innerHTML = items.map(rawItem => {
-    // Si on trouve notre mot secret temporaire, on le remet à la normale
-    let cleanItem = rawItem;
-    if (cleanItem === 'Création_Art_Dessin') {
-        cleanItem = 'Création (art, dessin...)';
-    }
+    let cleanItem = rawItem === 'Création_Art_Dessin' ? 'Création (art, dessin...)' : rawItem;
     
-    // Si la personne a précisé autre chose, on affiche l'image par défaut
-    let imgKey = cleanItem;
-    if (cleanItem.toLowerCase().startsWith('autres :')) {
-        imgKey = 'Autres';
-    }
-    
+    // trans() extrait le texte tapé. getImg() affiche l'image correspondante.
     const translatedText = trans(cleanItem, lang);
-    const imgFile = getImg(imgKey);
+    const imgFile = getImg(cleanItem);
+    
     return `
       <div class="portfolio-card">
         <img src="${imgFile}" alt="${translatedText}">
@@ -447,8 +208,6 @@ function fillPortfolioGrid(gridId, rawText, lang) {
     `;
   }).join('');
 }
-
-const MEDALS = ['🥇','🥈','🥉'];
 
 function setLang(lang) {
   ['ar','fr','en'].forEach(l => document.getElementById('btn-'+l).classList.toggle('active', l===lang));
@@ -472,44 +231,32 @@ function setLang(lang) {
   document.getElementById('t-intel-title').textContent = u.tIntel;
   document.getElementById('t-pro-title').textContent  = u.tPro;
   document.getElementById('t-real-title').textContent = u.tReal;
-  document.querySelectorAll('.print-label,[id=btn-print-label]').forEach(el => el.textContent = u.tPrint);
+  document.getElementById('btn-print-label').textContent = u.tPrint;
 
-  // Remplissage Parfait
   fillPortfolioGrid('grid-car', RAW.car, lang);
   fillPortfolioGrid('grid-int', RAW.int, lang);
   fillPortfolioGrid('grid-comp', RAW.comp, lang);
   fillPortfolioGrid('grid-val', RAW.val, lang);
   fillPortfolioGrid('grid-real', RAW.real, lang);
 
+  const parseMedals = (raw) => raw ? raw.replace(/🥇|🥈|🥉/g, '|').split('|').map(s => s.trim()).filter(Boolean) : [];
   const riasecItems = parseMedals(RAW.riasec);
   const intelItems  = parseMedals(RAW.intel);
+  const MEDALS = ['🥇','🥈','🥉'];
 
-  [1,2,3].forEach(i => {
-    const rv = riasecItems[i-1];
-    const riasecEl = document.getElementById('riasec-'+i);
-    if (rv) {
-      const canonicalKey = findCanonicalKey(rv, RIASEC_LOOKUP);
-      const desc = canonicalKey ? DESCRIPTIONS.RIASEC[canonicalKey][lang] : '';
-      riasecEl.innerHTML = `${MEDALS[i-1]} <strong>${trans(rv, lang)}</strong>` +
-        (desc ? `<span class="result-desc">${desc}</span>` : '');
-    } else {
-      riasecEl.textContent = '';
-    }
+  document.getElementById('riasec-list').innerHTML = riasecItems.map((rv, i) => {
+    const labelFr = trans(rv, 'fr');
+    const desc = DESCRIPTIONS.RIASEC[labelFr] ? DESCRIPTIONS.RIASEC[labelFr][lang] : '';
+    return `<div class="result-line"><b>${MEDALS[i]} ${trans(rv, lang)}</b><br><span class="desc-text">${desc}</span></div>`;
+  }).join('');
 
-    const iv = intelItems[i-1];
-    const intelEl = document.getElementById('intel-'+i);
-    if (iv) {
-      const canonicalKey = findCanonicalKey(iv, INTEL_LOOKUP);
-      const desc = canonicalKey ? DESCRIPTIONS.Intelligences[canonicalKey][lang] : '';
-      intelEl.innerHTML = `${MEDALS[i-1]} <strong>${trans(iv, lang)}</strong>` +
-        (desc ? `<span class="result-desc">${desc}</span>` : '');
-    } else {
-      intelEl.textContent = '';
-    }
-  });
+  document.getElementById('intel-list').innerHTML = intelItems.map((iv, i) => {
+    const labelFr = trans(iv, 'fr');
+    const desc = DESCRIPTIONS.Intelligences[labelFr] ? DESCRIPTIONS.Intelligences[labelFr][lang] : '';
+    return `<div class="result-line"><b>${MEDALS[i]} ${trans(iv, lang)}</b><br><span class="desc-text">${desc}</span></div>`;
+  }).join('');
 
   document.getElementById('choix-pro').innerHTML = parseChoix(RAW.choix, lang);
-
   try { localStorage.setItem('fiche-lang', lang); } catch(e){}
 }
 
@@ -520,8 +267,7 @@ document.getElementById('classe').textContent = RAW.classe || '—';
 
 const urlLang  = new URLSearchParams(window.location.search).get('lang');
 const savedLang = (() => { try { return localStorage.getItem('fiche-lang'); } catch(e){ return null; } })();
-const initLang  = ['ar','fr','en'].includes(urlLang) ? urlLang : ['ar','fr','en'].includes(savedLang) ? savedLang : 'fr';
-setLang(initLang);
+setLang(['ar','fr','en'].includes(urlLang) ? urlLang : ['ar','fr','en'].includes(savedLang) ? savedLang : 'fr');
 </script>
 </body>
 </html>
