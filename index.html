@@ -488,8 +488,16 @@ function parseChoix(raw, lang) {
 
 function fillPortfolioGrid(gridId, rawText, lang) {
   const grid = document.getElementById(gridId);
-  // LA MAGIE EST ICI : Le split par VIRGULE qui empêche de casser les mots !
-  const items = rawText.split(',').map(s => s.trim()).filter(Boolean);
+  if (!rawText) {
+    grid.innerHTML = '<div style="color:#999; padding-left:4px;">—</div>';
+    return;
+  }
+  
+  // MAGIE : Remplace temporairement la virgule dans le texte problématique
+  // pour empêcher la fonction .split(',') de le couper en deux morceaux !
+  let safeText = rawText.replace(/Création \(art, dessin\.\.\.\)/gi, 'Création_Art_Dessin');
+  
+  const items = safeText.split(',').map(s => s.trim()).filter(Boolean);
   
   if (items.length === 0) {
     grid.innerHTML = '<div style="color:#999; padding-left:4px;">—</div>';
@@ -497,7 +505,12 @@ function fillPortfolioGrid(gridId, rawText, lang) {
   }
   
   grid.innerHTML = items.map(rawItem => {
+    // Si on trouve notre mot secret temporaire, on le remet à la normale
     let cleanItem = rawItem;
+    if (cleanItem === 'Création_Art_Dessin') {
+        cleanItem = 'Création (art, dessin...)';
+    }
+    
     // Si la personne a précisé autre chose, on affiche l'image par défaut
     let imgKey = cleanItem;
     if (cleanItem.toLowerCase().startsWith('autres :')) {
