@@ -184,7 +184,7 @@
   <hr class="divider">
   
   <div class="section-title" id="t-real-title">🏆 Mes Réalisations</div>
-  <div id="realisations-container" class="portfolio-grid"></div>
+  <div class="portfolio-grid" id="grid-real"></div>
 
   <hr class="divider">
 
@@ -210,6 +210,7 @@
 <script>
 // ─── Dictionnaire Super-Intelligent (Gère les codes Kobo ET le Français) ────
 const ITEM_IMAGES = {
+  // Caractéristiques
   'analytique': 'ambitieux.jpg', 'Ambitieux(se)': 'ambitieux.jpg',
   'cr_atif_ve': 'creatif.jpg', 'Créatif(ve)': 'creatif.jpg',
   'organis_e': 'organise.jpg', 'Organisé(e)': 'organise.jpg',
@@ -225,7 +226,7 @@ const ITEM_IMAGES = {
   'm_ticuleux': 'meticuleux.jpg', 'Méticuleux': 'meticuleux.jpg',
   'coop_rant': 'cooperant.jpg', 'Coopérant': 'cooperant.jpg',
   'timide': 'timide.jpg', 'Timide': 'timide.jpg',
-  
+  // Intérêts
   'sciences_et_recherche': 'SciencesandResearch.jpg', 'Sciences et recherche': 'SciencesandResearch.jpg',
   'technologie_et_informatique': 'info.jpg', 'Technologie et informatique': 'info.jpg',
   'sant__et_aide_aux_personnes': 'HealthandHelpingPeople.jpg', 'Santé et aide aux personnes': 'HealthandHelpingPeople.jpg',
@@ -237,9 +238,9 @@ const ITEM_IMAGES = {
   'travail_manuel___technique': 'travailmanuel.jpg', 'Travail manuel (avec les mains)': 'travailmanuel.jpg',
   '_ducation_et_formation': 'Education-and-training.jpg', 'Éducation et formation': 'Education-and-training.jpg',
   'activit_s_culinaires': 'cuisine.jpg', 'Activités culinaires': 'cuisine.jpg',
-  
+  // Compétences
   'communication': 'theatre.jpg', 'Théâtre': 'theatre.jpg',
-  'travail_en__quipe': 'sport.jpg', 'Sport': 'sport.jpg', 'Travail en équipe': 'teamwork.jpg',
+  'travail_en__quipe': 'sport.jpg', 'Sport': 'sport.jpg',
   'leadership': 'cooking.jpg', 'Cuisiner': 'cooking.jpg',
   'r_solution_de_probl_mes': 'Creative-Problem-Solving-Process.jpg', 'Résolution de problèmes': 'Creative-Problem-Solving-Process.jpg',
   'pens_e_critique': 'boardgames.jpg', 'Jeux de société': 'boardgames.jpg',
@@ -251,21 +252,33 @@ const ITEM_IMAGES = {
   'jeux_de_construction': 'lego.jpg', 'Jeux de construction': 'lego.jpg',
   'robotiques': 'robotiques.jpg', 'Robotiques': 'robotiques.jpg',
   'dessin': 'finirundessin.jpg', 'Dessin': 'finirundessin.jpg',
-  
+  // Valeurs
   'stabilit': 'respect.jpg', 'Respect': 'respect.jpg',
   'ind_pendance': 'independance.jpg', 'Indépendance': 'independance.jpg',
   'aider_les_autres': 'aiderqqun.jpg', 'Aider les autres': 'aiderqqun.jpg',
   'prestige___statut': 'prestige.jpg', 'Prestige': 'prestige.jpg',
   's_curit__financi_re': 'securite_financiere.jpg', 'Sécurité financière': 'securite_financiere.jpg',
   'libert__du_temps': 'freelancer.jpg', 'Liberté du temps': 'freelancer.jpg',
+  'Travail en équipe': 'teamwork.jpg',
   'd_fi_intellectuel': 'defiintellectuelle.jpg', 'Défi intellectuel': 'defiintellectuelle.jpg',
   'impact_social': 'impactsocial.jpg', 'Impact social': 'impactsocial.jpg',
   'aventure': 'aventure.jpg', 'Aventure': 'aventure.jpg',
-  
+  // Réalisations DYNAMIQUES
+  'prix_scolaire': 'award.jpg', 'Prix scolaire': 'award.jpg',
+  'sport': 'sport1.jpg', 'Réussite sportive': 'sport1.jpg',
+  'art_musique': 'art.jpg', 'Art / Musique': 'art.jpg',
+  'projet_ecole': 'project.jpg', 'Projet scolaire ou scientifique': 'project.jpg',
+  'benevolat': 'volunteer.jpg', 'Bénévolat / Service à la communauté': 'volunteer.jpg',
+  'Leadership (délégué, chef d\'équipe...)': 'leader.jpg',
+  'langue': 'language.jpg', 'Apprentissage d\'une langue': 'language.jpg',
+  'technologie': 'DigitalSkills.jpg', 'Technologie / Informatique': 'DigitalSkills.jpg',
+  'creation': 'creatif.jpg', 'Création (dessin, écriture, artisanat...)': 'creatif.jpg',
+  // Autres
   'autres': 'other.jpg', 'Autres': 'other.jpg'
 };
 
 const CHOICE_FR = {
+  // Carac/Int/Comp/Val
   'analytique': 'Ambitieux(se)', 'cr_atif_ve': 'Créatif(ve)', 'organis_e': 'Organisé(e)',
   'pers_v_rant_e': 'Persévérant(e)', 'sociable': 'Sociable', 'responsable': 'Responsable',
   'ind_pendant_e': 'Indépendant(e)', 'calme': 'Calme', 'empathique': 'Empathique',
@@ -285,6 +298,10 @@ const CHOICE_FR = {
   'aider_les_autres': 'Aider les autres', 'prestige___statut': 'Prestige',
   's_curit__financi_re': 'Sécurité financière', 'libert__du_temps': 'Liberté du temps',
   'd_fi_intellectuel': 'Défi intellectuel', 'impact_social': 'Impact social', 'aventure': 'Aventure',
+  // Réalisations
+  'prix_scolaire': 'Prix scolaire', 'sport': 'Réussite sportive', 'art_musique': 'Art / Musique',
+  'projet_ecole': 'Projet scolaire ou scientifique', 'benevolat': 'Bénévolat / Service à la communauté',
+  'langue': 'Apprentissage d\'une langue', 'technologie': 'Technologie / Informatique', 'creation': 'Création (dessin, écriture, artisanat...)',
   'autres': 'Autres'
 };
 
@@ -322,7 +339,13 @@ const CHOICE_AR = {
   's_curit__financi_re': 'الأمن المالي', 'Sécurité financière': 'الأمن المالي', 'libert__du_temps': 'حرية الوقت',
   'Liberté du temps': 'حرية الوقت', 'd_fi_intellectuel': 'التحدي الفكري', 'Défi intellectuel': 'التحدي الفكري',
   'impact_social': 'الأثر الاجتماعي', 'Impact social': 'الأثر الاجتماعي', 'aventure': 'المغامرة',
-  'Aventure': 'المغامرة', 'autres': 'أخرى', 'Autres': 'أخرى'
+  'Aventure': 'المغامرة',
+  // Realisations AR
+  'Prix scolaire': 'جائزة مدرسية', 'Réussite sportive': 'إنجاز رياضي', 'Art / Musique': 'فن / موسيقى',
+  'Projet scolaire ou scientifique': 'مشروع مدرسي أو علمي', 'Bénévolat / Service à la communauté': 'تطوّع / خدمة المجتمع',
+  'Leadership (délégué, chef d\'équipe...)': 'قيادة (مندوب، قائد فريق...)', 'Apprentissage d\'une langue': 'تعلّم لغة جديدة',
+  'Technologie / Informatique': 'تكنولوجيا / معلوماتية', 'Création (dessin, écriture, artisanat...)': 'إبداع (رسم، كتابة، حرف يدوية...)',
+  'autres': 'أخرى', 'Autres': 'أخرى'
 };
 
 const CHOICE_EN = {
@@ -359,48 +382,40 @@ const CHOICE_EN = {
   's_curit__financi_re': 'Financial Security', 'Sécurité financière': 'Financial Security', 'libert__du_temps': 'Time Freedom',
   'Liberté du temps': 'Time Freedom', 'd_fi_intellectuel': 'Intellectual Challenge', 'Défi intellectuel': 'Intellectual Challenge',
   'impact_social': 'Social Impact', 'Impact social': 'Social Impact', 'aventure': 'Adventure',
-  'Aventure': 'Adventure', 'autres': 'Other', 'Autres': 'Other'
+  'Aventure': 'Adventure', 
+  // Realisations EN
+  'Prix scolaire': 'School award', 'Réussite sportive': 'Sports achievement', 'Art / Musique': 'Art / Music',
+  'Projet scolaire ou scientifique': 'School or science project', 'Bénévolat / Service à la communauté': 'Volunteering / Community service',
+  'Leadership (délégué, chef d\'équipe...)': 'Leadership (delegate, team leader...)', 'Apprentissage d\'une langue': 'Learning a new language',
+  'Technologie / Informatique': 'Technology / Computing', 'Création (dessin, écriture, artisanat...)': 'Creation (drawing, writing, crafts...)',
+  'autres': 'Other', 'Autres': 'Other'
 };
-
-// ─── Vos Réalisations Fixes ────────────────────────────────────────────────
-const REALISATIONS = [
-  { img: 'award.jpg', fr: 'Création d\'un guide visuel', ar: 'إنشاء دليل مرئي', en: 'Creation of a visual guide' },
-  { img: 'project.jpg', fr: 'Projet de gestion d\'équipe', ar: 'مشروع إدارة الفريق', en: 'Team management project' }
-];
 
 // ─── UI translations ───────────────────────────────────────────────────────
 const UI = {
   fr: {
-    dir: 'ltr', htmlLang: 'fr',
-    mainTitle: '🎓 FICHE DE RÉSULTATS D\'ORIENTATION', tInfo: '👤 Informations personnelles',
-    tNom: 'Nom', tAge: 'Âge', tAns: 'ans', tEcole: 'École', tClasse: 'Classe',
-    tPortfolio: '📋 Mon Portfolio', tCar: 'Tes caractéristiques sont :', tInt: "Tes centres d'intérêts sont :",
-    tComp: 'Tes compétences sont :', tVal: 'Tes valeurs sont :', tRiasec: '🔬 Mon profil RIASEC (Top 3)',
-    tIntel: '🧠 Mes intelligences dominantes (Top 3)', tPro: '🎯 Choix professionnel',
-    tReal: '🏆 Mes Réalisations', tPrint: 'Imprimer / Enregistrer en PDF',
+    dir: 'ltr', htmlLang: 'fr', mainTitle: '🎓 FICHE DE RÉSULTATS D\'ORIENTATION', tInfo: '👤 Informations personnelles',
+    tNom: 'Nom', tAge: 'Âge', tAns: 'ans', tEcole: 'École', tClasse: 'Classe', tPortfolio: '📋 Mon Portfolio',
+    tCar: 'Tes caractéristiques sont :', tInt: "Tes centres d'intérêts sont :", tComp: 'Tes compétences sont :', 
+    tVal: 'Tes valeurs sont :', tRiasec: '🔬 Mon profil RIASEC (Top 3)', tIntel: '🧠 Mes intelligences dominantes (Top 3)', 
+    tPro: '🎯 Choix professionnel', tReal: '🏆 Mes Réalisations', tPrint: 'Imprimer / Enregistrer en PDF',
     proHas: 'Choix professionnel', proJob: 'Métier', proSubjects: 'Matières',
     proKnows: 'Connaît quelqu\'un dans ce domaine', proHelp: 'Peut aider', yes: 'Oui', no: 'Non'
   },
   ar: {
-    dir: 'rtl', htmlLang: 'ar',
-    mainTitle: '🎓 بطاقة نتائج التوجيه المهني', tInfo: '👤 المعلومات الشخصية',
-    tNom: 'الاسم', tAge: 'العمر', tAns: 'سنة', tEcole: 'المدرسة', tClasse: 'الصف',
-    tPortfolio: '📋 ملفي الشخصي', tCar: 'خصائصي الشخصية :', tInt: 'اهتماماتي :',
-    tComp: 'مهاراتي :', tVal: 'قيمي :', tRiasec: '🔬 نموذج RIASEC (أعلى 3)',
-    tIntel: '🧠 أنواع ذكائي الغالب (أعلى 3)', tPro: '🎯 الاختيار المهني',
-    tReal: '🏆 إنجازاتي', tPrint: 'طباعة / حفظ كـ PDF',
-    proHas: 'لديه اختيار مهني', proJob: 'المهنة', proSubjects: 'المواد',
+    dir: 'rtl', htmlLang: 'ar', mainTitle: '🎓 بطاقة نتائج التوجيه المهني', tInfo: '👤 المعلومات الشخصية',
+    tNom: 'الاسم', tAge: 'العمر', tAns: 'سنة', tEcole: 'المدرسة', tClasse: 'الصف', tPortfolio: '📋 ملفي الشخصي', 
+    tCar: 'خصائصي الشخصية :', tInt: 'اهتماماتي :', tComp: 'مهاراتي :', tVal: 'قيمي :', 
+    tRiasec: '🔬 نموذج RIASEC (أعلى 3)', tIntel: '🧠 أنواع ذكائي الغالب (أعلى 3)', tPro: '🎯 الاختيار المهني',
+    tReal: '🏆 إنجازاتي', tPrint: 'طباعة / حفظ كـ PDF', proHas: 'لديه اختيار مهني', proJob: 'المهنة', proSubjects: 'المواد',
     proKnows: 'يعرف شخصًا في هذا المجال', proHelp: 'يمكنه المساعدة', yes: 'نعم', no: 'لا'
   },
   en: {
-    dir: 'ltr', htmlLang: 'en',
-    mainTitle: '🎓 CAREER GUIDANCE RESULTS', tInfo: '👤 Personal Information',
-    tNom: 'Name', tAge: 'Age', tAns: 'years old', tEcole: 'School', tClasse: 'Class',
-    tPortfolio: '📋 My Portfolio', tCar: 'My characteristics:', tInt: 'My interests:',
-    tComp: 'My skills:', tVal: 'My values:', tRiasec: '🔬 My RIASEC Profile (Top 3)',
-    tIntel: '🧠 My Dominant Intelligence Types (Top 3)', tPro: '🎯 Professional Choice',
-    tReal: '🏆 My Achievements', tPrint: 'Print / Save as PDF',
-    proHas: 'Professional choice', proJob: 'Career', proSubjects: 'Subjects',
+    dir: 'ltr', htmlLang: 'en', mainTitle: '🎓 CAREER GUIDANCE RESULTS', tInfo: '👤 Personal Information',
+    tNom: 'Name', tAge: 'Age', tAns: 'years old', tEcole: 'School', tClasse: 'Class', tPortfolio: '📋 My Portfolio', 
+    tCar: 'My characteristics:', tInt: 'My interests:', tComp: 'My skills:', tVal: 'My values:', 
+    tRiasec: '🔬 My RIASEC Profile (Top 3)', tIntel: '🧠 My Dominant Intelligence Types (Top 3)', tPro: '🎯 Professional Choice',
+    tReal: '🏆 My Achievements', tPrint: 'Print / Save as PDF', proHas: 'Professional choice', proJob: 'Career', proSubjects: 'Subjects',
     proKnows: 'Knows someone in this field', proHelp: 'Can help', yes: 'Yes', no: 'No'
   }
 };
@@ -410,8 +425,9 @@ function getParam(name) {
   const aliases = {
     nom: ['الإسم','nom','name'], age: ['العمر','age'], ecole: ['ecole','school','مدرسة'],
     classe: ['الصف','classe','class'], car: ['صفاتي','car','chars'], int: ['إهتماماتي','int','interests'],
-    comp: ['مهاراتي','comp','skills'], val: ['قيمي','val','values'], riasec: ['إختبارriasec','riasec'],
-    intel: ['إختبارintel','intel'], choix: ['مهنتي','choix','pro']
+    comp: ['مهاراتي','comp','skills'], val: ['قيمي','val','values'], 
+    real: ['realisations','real','achievements'], // AJOUT DES REALISATIONS DYNAMIQUES
+    riasec: ['إختبارriasec','riasec'], intel: ['إختبارintel','intel'], choix: ['مهنتي','choix','pro']
   };
   const p = new URLSearchParams(window.location.search);
   const keys = aliases[name] || [name];
@@ -425,6 +441,7 @@ function getParam(name) {
 const RAW = {
   nom: getParam('nom'), age: getParam('age'), ecole: getParam('ecole'), classe: getParam('classe'),
   car: getParam('car'), int: getParam('int'), comp: getParam('comp'), val: getParam('val'),
+  real: getParam('real'), // On récupère les réalisations
   riasec: getParam('riasec'), intel: getParam('intel'), choix: getParam('choix')
 };
 
@@ -433,7 +450,7 @@ function trans(term, lang) {
   const t = term.trim();
   if (lang === 'ar') return CHOICE_AR[t] || t;
   if (lang === 'en') return CHOICE_EN[t] || t;
-  return CHOICE_FR[t] || t; // If French, convert technical code to nice French if needed
+  return CHOICE_FR[t] || t;
 }
 
 function getImg(term) {
@@ -473,7 +490,8 @@ function parseChoix(raw, lang) {
 
 function fillPortfolioGrid(gridId, rawText, lang) {
   const grid = document.getElementById(gridId);
-  const items = rawText.split(' ').map(s => s.trim()).filter(Boolean); // Changed split from ',' to ' ' for Kobo codes
+  // Retour de la séparation par VIRGULE (,) pour ne pas couper "Nature et environnement"
+  const items = rawText.split(',').map(s => s.trim()).filter(Boolean);
   
   if (items.length === 0) {
     grid.innerHTML = '<div style="color:#999; padding-left:4px;">—</div>';
@@ -481,7 +499,7 @@ function fillPortfolioGrid(gridId, rawText, lang) {
   }
   
   grid.innerHTML = items.map(rawItem => {
-    const cleanItem = rawItem.replace(/,/g, ''); // Kobo sometimes adds commas
+    const cleanItem = rawItem.replace(/,/g, ''); 
     const translatedText = trans(cleanItem, lang);
     const imgFile = getImg(cleanItem);
     return `
@@ -520,11 +538,14 @@ function setLang(lang) {
   document.getElementById('t-real-title').textContent = u.tReal;
   document.querySelectorAll('.print-label,[id=btn-print-label]').forEach(el => el.textContent = u.tPrint);
 
-  // Grids
+  // Grids (Maintient les images correctes en séparant par des virgules)
   fillPortfolioGrid('grid-car', RAW.car, lang);
   fillPortfolioGrid('grid-int', RAW.int, lang);
   fillPortfolioGrid('grid-comp', RAW.comp, lang);
   fillPortfolioGrid('grid-val', RAW.val, lang);
+  
+  // Realisations (Maintenant 100% dynamiques selon les choix Kobo de l'élève)
+  fillPortfolioGrid('grid-real', RAW.real, lang);
 
   // Profil
   const riasecItems = parseMedals(RAW.riasec);
@@ -537,15 +558,6 @@ function setLang(lang) {
   });
 
   document.getElementById('choix-pro').innerHTML = parseChoix(RAW.choix, lang);
-
-  // Realisations
-  const realContainer = document.getElementById('realisations-container');
-  realContainer.innerHTML = REALISATIONS.map(r => `
-    <div class="portfolio-card">
-      <img src="${r.img}" alt="${r[lang]}">
-      <div class="card-text">${r[lang]}</div>
-    </div>
-  `).join('');
 
   try { localStorage.setItem('fiche-lang', lang); } catch(e){}
 }
