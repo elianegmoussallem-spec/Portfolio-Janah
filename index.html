@@ -78,7 +78,7 @@
 
   <hr class="divider">
   <div class="section-title" id="t-pro-title">🎯 Choix professionnel</div>
-  <div id="choix-pro" class="choix-text"></div>
+  <div id="choix-pro"></div>
 </div>
 
 <script>
@@ -115,14 +115,6 @@ const ITEM_IMAGES = {
 
 // --- DICTIONNAIRES DE TRADUCTION ---
 const RAW_AR = {
-  // RIASEC & Intel
-  'réaliste': 'واقعي', 'investigateur': 'باحث', 'artistique': 'فني/مبدع', 'social': 'اجتماعي', 'entrepreneurial': 'ريادي', 'conventionnel': 'تقليدي',
-  'linguistique': 'لغوي', 'logico-mathématique': 'منطقي-رياضي', 'spatiale': 'بصري-فضائي', 'musicale': 'موسيقي', 'kinesthésique': 'حركي', 'interpersonnelle': 'اجتماعي (تفاعلي)', 'intrapersonnelle': 'ذاتي', 'naturaliste': 'طبيعي',
-  // Classes
-  'eb5': 'خامس إبتدائي', 'eb6': 'سادس تكميلي', 'eb7': 'سابع تكميلي', 'eb8': 'ثامن تكميلي', 'eb9': 'تاسع تكميلي',
-  // Choix pro
-  'oui': 'نعم', 'non': 'لا', 'besoin de plus de temps': 'أحتاج مزيداً من الوقت', 'manque de connaissance': 'نقص في المعرفة',
-  // Portfolio
   'ambitieux(se)': 'طموح/ة', 'créatif(ve)': 'مبدع/ة', 'organisé(e)': 'منظّم/ة', 'persévérant(e)': 'مثابر/ة', 'sociable': 'اجتماعي/ة', 'responsable': 'مسؤول/ة', 'indépendant(e)': 'مستقل/ة', 'calme': 'هادئ/ة', 'empathique': 'متعاطف/ة', 'attentif(ve)': 'منتبه/ة', 'honnête': 'صادق/ة', 'curieux': 'فضولي/ة', 'méticuleux': 'دقيق/ة', 'coopérant': 'متعاون/ة', 'timide': 'خجول/ة',
   'sciences et recherche': 'العلوم والبحث', 'technologie et informatique': 'التكنولوجيا والمعلوماتية', 'santé et aide aux personnes': 'الصحة ومساعدة الناس', 'arts et création': 'الفنون والإبداع', 'commerce et entrepreneuriat': 'التجارة وريادة الأعمال', 'nature et environnement': 'الطبيعة والبيئة', 'communication et médias': 'التواصل والإعلام', 'gestion et organisation': 'الإدارة والتنظيم', 'travail manuel (avec les mains)': 'العمل اليدوي', 'éducation et formation': 'التعليم والتكوين', 'activités culinaires': 'الأنشطة الطهوية',
   'théatre': 'المسرح', 'théâtre': 'المسرح', 'sport': 'الرياضة', 'cuisiner': 'الطبخ', 'cuisinier': 'الطبخ', 'résolution de problèmes': 'حل المشكلات', 'jeux de société': 'ألعاب الطاولة', 'créativité': 'الإبداع', 'organisation': 'التنظيم', 'jeux stratégiques': 'الألعاب الاستراتيجية', 'compétences numériques': 'المهارات الرقمية', 'langue étrangère': 'اللغة الأجنبية', 'jeux de construction': 'ألعاب البناء', 'robotiques': 'الروبوتيك', 'dessin': 'الرسم',
@@ -130,10 +122,6 @@ const RAW_AR = {
   'prix scolaire': 'جائزة مدرسية', 'réussite sportive': 'إنجاز رياضي', 'art / musique': 'فن / موسيقى', 'projet scolaire': 'مشروع مدرسي أو علمي', 'projet scolaire ou scientifique': 'مشروع مدرسي أو علمي', 'bénévolat': 'تطوّع / خدمة المجتمع', 'bénévolat / service à la communauté': 'تطوّع / خدمة المجتمع', 'leadership': 'القيادة', 'apprentissage d\'une langue': 'تعلّم لغة جديدة', 'création': 'إبداع (رسم، كتابة، حرف يدوية...)', 'création (art, dessin...)': 'إبداع (رسم، كتابة، حرف يدوية...)', 'autres': 'أخرى'
 };
 const RAW_EN = {
-  'réaliste': 'Realistic', 'investigateur': 'Investigative', 'artistique': 'Artistic', 'social': 'Social', 'entrepreneurial': 'Enterprising', 'conventionnel': 'Conventional',
-  'linguistique': 'Linguistic', 'logico-mathématique': 'Logical-Mathematical', 'spatiale': 'Spatial', 'musicale': 'Musical', 'kinesthésique': 'Kinesthetic', 'interpersonnelle': 'Interpersonal', 'intrapersonnelle': 'Intrapersonal', 'naturaliste': 'Naturalistic',
-  'eb5': 'Grade 5', 'eb6': 'Grade 6', 'eb7': 'Grade 7', 'eb8': 'Grade 8', 'eb9': 'Grade 9',
-  'oui': 'Yes', 'non': 'No', 'besoin de plus de temps': 'Need more time', 'manque de connaissance': 'Lack of knowledge',
   'ambitieux(se)': 'Ambitious', 'créatif(ve)': 'Creative', 'organisé(e)': 'Organized', 'persévérant(e)': 'Persevering', 'sociable': 'Sociable', 'responsable': 'Responsible', 'indépendant(e)': 'Independent', 'calme': 'Calm', 'empathique': 'Empathetic', 'attentif(ve)': 'Attentive', 'honnête': 'Honest', 'curieux': 'Curious', 'méticuleux': 'Meticulous', 'coopérant': 'Cooperative', 'timide': 'Shy',
   'sciences et recherche': 'Sciences and Research', 'technologie et informatique': 'Technology and Computing', 'santé et aide aux personnes': 'Health and Helping People', 'arts et création': 'Arts and Creation', 'commerce et entrepreneuriat': 'Business and Entrepreneurship', 'nature et environnement': 'Nature and Environment', 'communication et médias': 'Communication and Media', 'gestion et organisation': 'Management and Organization', 'travail manuel (avec les mains)': 'Manual Work', 'éducation et formation': 'Education and Training', 'activités culinaires': 'Culinary Activities',
   'théatre': 'Theater', 'théâtre': 'Theater', 'sport': 'Sport', 'cuisiner': 'Cooking', 'cuisinier': 'Cooking', 'résolution de problèmes': 'Problem Solving', 'jeux de société': 'Board Games', 'créativité': 'Creativity', 'organisation': 'Organization', 'jeux stratégiques': 'Strategy Games', 'compétences numériques': 'Digital Skills', 'langue étrangère': 'Foreign Language', 'jeux de construction': 'Construction Games', 'robotiques': 'Robotics', 'dessin': 'Drawing',
@@ -141,10 +129,6 @@ const RAW_EN = {
   'prix scolaire': 'School award', 'réussite sportive': 'Sports achievement', 'art / musique': 'Art / Music', 'projet scolaire': 'School or science project', 'projet scolaire ou scientifique': 'School or science project', 'bénévolat': 'Volunteering / Community service', 'bénévolat / service à la communauté': 'Volunteering / Community service', 'leadership': 'Leadership', 'apprentissage d\'une langue': 'Learning a new language', 'création': 'Creation (drawing, writing, crafts...)', 'création (art, dessin...)': 'Creation (drawing, writing, crafts...)', 'autres': 'Other'
 };
 const RAW_FR = {
-  'réaliste': 'Réaliste', 'investigateur': 'Investigateur', 'artistique': 'Artistique', 'social': 'Social', 'entrepreneurial': 'Entrepreneurial', 'conventionnel': 'Conventionnel',
-  'linguistique': 'Linguistique', 'logico-mathématique': 'Logico-mathématique', 'spatiale': 'Spatiale', 'musicale': 'Musicale', 'kinesthésique': 'Kinesthésique', 'interpersonnelle': 'Interpersonnelle', 'intrapersonnelle': 'Intrapersonnelle', 'naturaliste': 'Naturaliste',
-  'eb5': 'EB5', 'eb6': 'EB6', 'eb7': 'EB7', 'eb8': 'EB8', 'eb9': 'EB9',
-  'oui': 'Oui', 'non': 'Non', 'besoin de plus de temps': 'Besoin de plus de temps', 'manque de connaissance': 'Manque de connaissance',
   'ambitieux(se)': 'Ambitieux(se)', 'créatif(ve)': 'Créatif(ve)', 'organisé(e)': 'Organisé(e)', 'persévérant(e)': 'Persévérant(e)', 'sociable': 'Sociable', 'responsable': 'Responsable', 'indépendant(e)': 'Indépendant(e)', 'calme': 'Calme', 'empathique': 'Empathique', 'attentif(ve)': 'Attentif(ve)', 'honnête': 'Honnête', 'curieux': 'Curieux', 'méticuleux': 'Méticuleux', 'coopérant': 'Coopérant', 'timide': 'Timide',
   'sciences et recherche': 'Sciences et recherche', 'technologie et informatique': 'Technologie et informatique', 'santé et aide aux personnes': 'Santé et aide aux personnes', 'arts et création': 'Arts et création', 'commerce et entrepreneuriat': 'Commerce et entrepreneuriat', 'nature et environnement': 'Nature et environnement', 'communication et médias': 'Communication et médias', 'gestion et organisation': 'Gestion et organisation', 'travail manuel (avec les mains)': 'Travail manuel (avec les mains)', 'éducation et formation': 'Éducation et formation', 'activités culinaires': 'Activités culinaires',
   'théatre': 'Théâtre', 'théâtre': 'Théâtre', 'sport': 'Sport', 'cuisiner': 'Cuisiner', 'cuisinier': 'Cuisiner', 'résolution de problèmes': 'Résolution de problèmes', 'jeux de société': 'Jeux de société', 'créativité': 'Créativité', 'organisation': 'Organisation', 'jeux stratégiques': 'Jeux stratégiques', 'compétences numériques': 'Compétences numériques', 'langue étrangère': 'Langue étrangère', 'jeux de construction': 'Jeux de construction', 'robotiques': 'Robotiques', 'dessin': 'Dessin',
@@ -153,9 +137,9 @@ const RAW_FR = {
 };
 
 const UI = {
-  fr: { dir: 'ltr', htmlLang: 'fr', mainTitle: '🎓 FICHE DE RÉSULTATS D\'ORIENTATION', tInfo: '👤 Informations personnelles', tNom: 'Nom', tAge: 'Âge', tAns: 'ans', tEcole: 'École', tClasse: 'Classe', tPortfolio: '📋 Mon Portfolio', tCar: 'Tes caractéristiques sont :', tInt: "Tes centres d'intérêts sont :", tComp: 'Tes compétences sont :', tVal: 'Tes valeurs sont :', tRiasec: '🔬 Mon profil RIASEC', tIntel: '🧠 Mes intelligences dominantes', tPro: '🎯 Choix professionnel', tReal: '🏆 Mes Réalisations', tPrint: 'Imprimer / Enregistrer en PDF', proHas: 'Choix professionnel', proReason: 'Raison', proJob: 'Métier', proSubjects: 'Matières', proKnows: 'Connaît quelqu\'un dans ce domaine', proHelp: 'Peut aider' },
-  ar: { dir: 'rtl', htmlLang: 'ar', mainTitle: '🎓 بطاقة نتائج التوجيه المهني', tInfo: '👤 المعلومات الشخصية', tNom: 'الاسم', tAge: 'العمر', tAns: 'سنة', tEcole: 'المدرسة', tClasse: 'الصف', tPortfolio: '📋 ملفي الشخصي', tCar: 'خصائصي الشخصية :', tInt: 'اهتماماتي :', tComp: 'مهاراتي :', tVal: 'قيمي :', tRiasec: '🔬 نموذج RIASEC', tIntel: '🧠 أنواع ذكائي الغالب', tPro: '🎯 الاختيار المهني', tReal: '🏆 إنجازاتي', tPrint: 'طباعة / حفظ كـ PDF', proHas: 'لديه اختيار مهني', proReason: 'السبب', proJob: 'المهنة', proSubjects: 'المواد', proKnows: 'يعرف شخصًا في هذا المجال', proHelp: 'يمكنه المساعدة' },
-  en: { dir: 'ltr', htmlLang: 'en', mainTitle: '🎓 CAREER GUIDANCE RESULTS', tInfo: '👤 Personal Information', tNom: 'Name', tAge: 'Age', tAns: 'years old', tEcole: 'School', tClasse: 'Class', tPortfolio: '📋 My Portfolio', tCar: 'My characteristics:', tInt: 'My interests:', tComp: 'My skills:', tVal: 'My values:', tRiasec: '🔬 My RIASEC Profile', tIntel: '🧠 My Dominant Intelligence Types', tPro: '🎯 Professional Choice', tReal: '🏆 My Achievements', tPrint: 'Print / Save as PDF', proHas: 'Professional choice', proReason: 'Reason', proJob: 'Career', proSubjects: 'Subjects', proKnows: 'Knows someone in this field', proHelp: 'Can help' }
+  fr: { dir: 'ltr', htmlLang: 'fr', mainTitle: '🎓 FICHE DE RÉSULTATS D\'ORIENTATION', tInfo: '👤 Informations personnelles', tNom: 'Nom', tAge: 'Âge', tAns: 'ans', tEcole: 'École', tClasse: 'Classe', tPortfolio: '📋 Mon Portfolio', tCar: 'Tes caractéristiques sont :', tInt: "Tes centres d'intérêts sont :", tComp: 'Tes compétences sont :', tVal: 'Tes valeurs sont :', tRiasec: '🔬 Mon profil RIASEC', tIntel: '🧠 Mes intelligences dominantes', tPro: '🎯 Choix professionnel', tReal: '🏆 Mes Réalisations', tPrint: 'Imprimer / Enregistrer en PDF', proHas: 'Choix professionnel', proJob: 'Métier', proSubjects: 'Matières', proKnows: 'Connaît quelqu\'un dans ce domaine', proHelp: 'Peut aider' },
+  ar: { dir: 'rtl', htmlLang: 'ar', mainTitle: '🎓 بطاقة نتائج التوجيه المهني', tInfo: '👤 المعلومات الشخصية', tNom: 'الاسم', tAge: 'العمر', tAns: 'سنة', tEcole: 'المدرسة', tClasse: 'الصف', tPortfolio: '📋 ملفي الشخصي', tCar: 'خصائصي الشخصية :', tInt: 'اهتماماتي :', tComp: 'مهاراتي :', tVal: 'قيمي :', tRiasec: '🔬 نموذج RIASEC', tIntel: '🧠 أنواع ذكائي الغالب', tPro: '🎯 الاختيار المهني', tReal: '🏆 إنجازاتي', tPrint: 'طباعة / حفظ كـ PDF', proHas: 'لديه اختيار مهني', proJob: 'المهنة', proSubjects: 'المواد', proKnows: 'يعرف شخصًا في هذا المجال', proHelp: 'يمكنه المساعدة' },
+  en: { dir: 'ltr', htmlLang: 'en', mainTitle: '🎓 CAREER GUIDANCE RESULTS', tInfo: '👤 Personal Information', tNom: 'Name', tAge: 'Age', tAns: 'years old', tEcole: 'School', tClasse: 'Class', tPortfolio: '📋 My Portfolio', tCar: 'My characteristics:', tInt: 'My interests:', tComp: 'My skills:', tVal: 'My values:', tRiasec: '🔬 My RIASEC Profile', tIntel: '🧠 My Dominant Intelligence Types', tPro: '🎯 Professional Choice', tReal: '🏆 My Achievements', tPrint: 'Print / Save as PDF', proHas: 'Professional choice', proJob: 'Career', proSubjects: 'Subjects', proKnows: 'Knows someone in this field', proHelp: 'Can help' }
 };
 
 // --- LOGIQUE DE LECTURE DU LIEN ---
@@ -174,13 +158,12 @@ const RAW = {
   riasec: getParam('riasec'), intel: getParam('intel'), choix: getParam('choix')
 };
 
-// --- TRADUCTION ---
+// --- TRADUCTION ET EXTRACTION DU TEXTE "AUTRES" ---
 function trans(term, lang) {
-  if (!term) return '';
   const t = term.trim();
   const tLower = t.toLowerCase();
   
-  // Cas "Autres : xxx"
+  // MAGIE : Si le mot commence par "Autres :" ou "Autres:", on garde juste le mot tapé par l'élève !
   if (tLower.startsWith('autres :')) return t.substring(8).trim();
   if (tLower.startsWith('autres:')) return t.substring(7).trim();
 
@@ -191,38 +174,14 @@ function trans(term, lang) {
 
 function getImg(term) {
   const tLower = term.trim().toLowerCase();
-  if (tLower.startsWith('autres')) return 'other.jpg'; 
+  if (tLower.startsWith('autres')) return 'other.jpg'; // Affiche l'image bleue si c'est "Autres"
   return ITEM_IMAGES[tLower] || 'other.jpg';
 }
 
 function parseChoix(raw, lang) {
   if (!raw) return '—';
-  const u = UI[lang];
   const segments = raw.split('|').map(s => s.trim()).filter(Boolean);
-  const lines = [];
-  
-  segments.forEach(seg => {
-    const parts = seg.split(':').map(s => s.trim());
-    
-    // S'il n'y a pas de ":" (comme pour Oui ou Non tout seul)
-    if (parts.length === 1) {
-      lines.push(`<div><strong>${u.proHas} :</strong> ${trans(parts[0], lang)}</div>`);
-    } else {
-      // S'il y a un ":" (comme pour Raison: Besoin de plus de temps)
-      let labelRaw = parts[0].toLowerCase();
-      let val = parts.slice(1).join(':').trim(); // Le reste de la phrase
-      
-      let displayLabel = parts[0];
-      if (labelRaw.includes('raison')) displayLabel = u.proReason;
-      if (labelRaw.includes('metier')) displayLabel = u.proJob;
-      if (labelRaw.includes('matieres')) displayLabel = u.proSubjects;
-      if (labelRaw.includes('connait')) displayLabel = u.proKnows;
-      if (labelRaw.includes('peut aider')) displayLabel = u.proHelp;
-
-      lines.push(`<div><strong>${displayLabel} :</strong> ${trans(val, lang)}</div>`);
-    }
-  });
-  return lines.join('');
+  return segments.map(seg => `<div>${seg}</div>`).join('');
 }
 
 function fillPortfolioGrid(gridId, rawText, lang) {
@@ -236,6 +195,8 @@ function fillPortfolioGrid(gridId, rawText, lang) {
   
   grid.innerHTML = items.map(rawItem => {
     let cleanItem = rawItem === 'Création_Art_Dessin' ? 'Création (art, dessin...)' : rawItem;
+    
+    // trans() extrait le texte tapé. getImg() affiche l'image correspondante.
     const translatedText = trans(cleanItem, lang);
     const imgFile = getImg(cleanItem);
     
@@ -302,20 +263,11 @@ function setLang(lang) {
 document.getElementById('nom').textContent    = RAW.nom    || '—';
 document.getElementById('age').textContent    = RAW.age    || '—';
 document.getElementById('ecole').textContent  = RAW.ecole  || '—';
-
-// ICI ON TRADUIT LA CLASSE ÉGALEMENT (EB7 -> سابع تكميلي) !
-document.getElementById('classe').textContent = RAW.classe ? trans(RAW.classe, urlLang || 'fr') : '—';
+document.getElementById('classe').textContent = RAW.classe || '—';
 
 const urlLang  = new URLSearchParams(window.location.search).get('lang');
 const savedLang = (() => { try { return localStorage.getItem('fiche-lang'); } catch(e){ return null; } })();
 setLang(['ar','fr','en'].includes(urlLang) ? urlLang : ['ar','fr','en'].includes(savedLang) ? savedLang : 'fr');
-
-// Assure que la classe se met à jour quand on clique sur les boutons de langue
-const originalSetLang = setLang;
-setLang = function(lang) {
-    originalSetLang(lang);
-    document.getElementById('classe').textContent = RAW.classe ? trans(RAW.classe, lang) : '—';
-};
 </script>
 </body>
 </html>
