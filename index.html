@@ -208,7 +208,7 @@
 </div>
 
 <script>
-// ─── Dictionnaire Super-Intelligent (Gère les codes Kobo ET le Français) ────
+// ─── Dictionnaire Super-Intelligent (Inclus tous vos raccourcis Kobo !) ────
 const ITEM_IMAGES = {
   // Caractéristiques
   'analytique': 'ambitieux.jpg', 'Ambitieux(se)': 'ambitieux.jpg',
@@ -226,6 +226,7 @@ const ITEM_IMAGES = {
   'm_ticuleux': 'meticuleux.jpg', 'Méticuleux': 'meticuleux.jpg',
   'coop_rant': 'cooperant.jpg', 'Coopérant': 'cooperant.jpg',
   'timide': 'timide.jpg', 'Timide': 'timide.jpg',
+  
   // Intérêts
   'sciences_et_recherche': 'SciencesandResearch.jpg', 'Sciences et recherche': 'SciencesandResearch.jpg',
   'technologie_et_informatique': 'info.jpg', 'Technologie et informatique': 'info.jpg',
@@ -238,10 +239,11 @@ const ITEM_IMAGES = {
   'travail_manuel___technique': 'travailmanuel.jpg', 'Travail manuel (avec les mains)': 'travailmanuel.jpg',
   '_ducation_et_formation': 'Education-and-training.jpg', 'Éducation et formation': 'Education-and-training.jpg',
   'activit_s_culinaires': 'cuisine.jpg', 'Activités culinaires': 'cuisine.jpg',
-  // Compétences
-  'communication': 'theatre.jpg', 'Théâtre': 'theatre.jpg',
+  
+  // Compétences (Avec 'cuisiner' et 'Théatre')
+  'communication': 'theatre.jpg', 'Théâtre': 'theatre.jpg', 'Théatre': 'theatre.jpg',
   'travail_en__quipe': 'sport.jpg', 'Sport': 'sport.jpg',
-  'leadership': 'cooking.jpg', 'Cuisiner': 'cooking.jpg',
+  'leadership': 'cooking.jpg', 'Cuisiner': 'cooking.jpg', 'cuisiner': 'cooking.jpg',
   'r_solution_de_probl_mes': 'Creative-Problem-Solving-Process.jpg', 'Résolution de problèmes': 'Creative-Problem-Solving-Process.jpg',
   'pens_e_critique': 'boardgames.jpg', 'Jeux de société': 'boardgames.jpg',
   'cr_ativit': 'creativity.jpg', 'Créativité': 'creativity.jpg',
@@ -252,6 +254,7 @@ const ITEM_IMAGES = {
   'jeux_de_construction': 'lego.jpg', 'Jeux de construction': 'lego.jpg',
   'robotiques': 'robotiques.jpg', 'Robotiques': 'robotiques.jpg',
   'dessin': 'finirundessin.jpg', 'Dessin': 'finirundessin.jpg',
+  
   // Valeurs
   'stabilit': 'respect.jpg', 'Respect': 'respect.jpg',
   'ind_pendance': 'independance.jpg', 'Indépendance': 'independance.jpg',
@@ -263,49 +266,34 @@ const ITEM_IMAGES = {
   'd_fi_intellectuel': 'defiintellectuelle.jpg', 'Défi intellectuel': 'defiintellectuelle.jpg',
   'impact_social': 'impactsocial.jpg', 'Impact social': 'impactsocial.jpg',
   'aventure': 'aventure.jpg', 'Aventure': 'aventure.jpg',
-  // Réalisations DYNAMIQUES
+  
+  // Réalisations (Avec TOUS vos mots raccourcis)
   'prix_scolaire': 'award.jpg', 'Prix scolaire': 'award.jpg',
   'sport': 'sport1.jpg', 'Réussite sportive': 'sport1.jpg',
   'art_musique': 'art.jpg', 'Art / Musique': 'art.jpg',
-  'projet_ecole': 'project.jpg', 'Projet scolaire ou scientifique': 'project.jpg',
-  'benevolat': 'volunteer.jpg', 'Bénévolat / Service à la communauté': 'volunteer.jpg',
-  'Leadership (délégué, chef d\'équipe...)': 'leader.jpg',
+  'projet_ecole': 'project.jpg', 'Projet scolaire ou scientifique': 'project.jpg', 'Projet scolaire': 'project.jpg',
+  'benevolat': 'volunteer.jpg', 'Bénévolat / Service à la communauté': 'volunteer.jpg', 'Bénévolat': 'volunteer.jpg',
+  'Leadership (délégué, chef d\'équipe...)': 'leader.jpg', 'Leadership': 'leader.jpg',
   'langue': 'language.jpg', 'Apprentissage d\'une langue': 'language.jpg',
   'technologie': 'DigitalSkills.jpg', 'Technologie / Informatique': 'DigitalSkills.jpg',
-  'creation': 'creatif.jpg', 'Création (dessin, écriture, artisanat...)': 'creatif.jpg',
-  // Autres
-  'autres': 'other.jpg', 'Autres': 'other.jpg'
+  'creation': 'creatif.jpg', 'Création (dessin, écriture, artisanat...)': 'creatif.jpg', 'Création (art, dessin...)': 'creatif.jpg'
 };
 
 const CHOICE_FR = {
-  // Carac/Int/Comp/Val
-  'analytique': 'Ambitieux(se)', 'cr_atif_ve': 'Créatif(ve)', 'organis_e': 'Organisé(e)',
-  'pers_v_rant_e': 'Persévérant(e)', 'sociable': 'Sociable', 'responsable': 'Responsable',
-  'ind_pendant_e': 'Indépendant(e)', 'calme': 'Calme', 'empathique': 'Empathique',
-  'pragmatique': 'Attentif(ve)', 'honn_te': 'Honnête', 'curieux': 'Curieux',
-  'm_ticuleux': 'Méticuleux', 'coop_rant': 'Coopérant', 'timide': 'Timide',
-  'sciences_et_recherche': 'Sciences et recherche', 'technologie_et_informatique': 'Technologie et informatique',
-  'sant__et_aide_aux_personnes': 'Santé et aide aux personnes', 'arts_et_cr_ation': 'Arts et création',
-  'commerce_et_entrepreneuriat': 'Commerce et entrepreneuriat', 'nature_et_environnement': 'Nature et environnement',
-  'communication_et_m_dias': 'Communication et médias', 'gestion_et_organisation': 'Gestion et organisation',
-  'travail_manuel___technique': 'Travail manuel (avec les mains)', '_ducation_et_formation': 'Éducation et formation',
-  'activit_s_culinaires': 'Activités culinaires', 'communication': 'Théâtre',
-  'travail_en__quipe': 'Sport', 'leadership': 'Cuisiner', 'r_solution_de_probl_mes': 'Résolution de problèmes',
-  'pens_e_critique': 'Jeux de société', 'cr_ativit': 'Créativité', 'organisation': 'Organisation',
-  'analyse_logique': 'Jeux stratégiques', 'comp_tences_num_riques': 'Compétences numériques',
-  'langue__trang_re': 'Langue étrangère', 'jeux_de_construction': 'Jeux de construction',
-  'robotiques': 'Robotiques', 'dessin': 'Dessin', 'stabilit': 'Respect', 'ind_pendance': 'Indépendance',
-  'aider_les_autres': 'Aider les autres', 'prestige___statut': 'Prestige',
-  's_curit__financi_re': 'Sécurité financière', 'libert__du_temps': 'Liberté du temps',
-  'd_fi_intellectuel': 'Défi intellectuel', 'impact_social': 'Impact social', 'aventure': 'Aventure',
-  // Réalisations
-  'prix_scolaire': 'Prix scolaire', 'sport': 'Réussite sportive', 'art_musique': 'Art / Musique',
-  'projet_ecole': 'Projet scolaire ou scientifique', 'benevolat': 'Bénévolat / Service à la communauté',
-  'langue': 'Apprentissage d\'une langue', 'technologie': 'Technologie / Informatique', 'creation': 'Création (dessin, écriture, artisanat...)',
-  'autres': 'Autres'
+  'cuisiner': 'Cuisiner', 'Théatre': 'Théâtre',
+  'Projet scolaire': 'Projet scolaire ou scientifique',
+  'Bénévolat': 'Bénévolat / Service à la communauté',
+  'Leadership': 'Leadership (délégué, chef d\'équipe...)',
+  'Création (art, dessin...)': 'Création (dessin, écriture, artisanat...)'
 };
 
 const CHOICE_AR = {
+  'cuisiner': 'الطبخ', 'Cuisiner': 'الطبخ', 'Théatre': 'المسرح',
+  'Projet scolaire': 'مشروع مدرسي أو علمي',
+  'Bénévolat': 'تطوّع / خدمة المجتمع',
+  'Leadership': 'قيادة (مندوب، قائد فريق...)',
+  'Création (art, dessin...)': 'إبداع (رسم، كتابة، حرف يدوية...)',
+  
   'analytique': 'طموح/ة', 'Ambitieux(se)': 'طموح/ة', 'cr_atif_ve': 'مبدع/ة', 'Créatif(ve)': 'مبدع/ة',
   'organis_e': 'منظّم/ة', 'Organisé(e)': 'منظّم/ة', 'pers_v_rant_e': 'مثابر/ة', 'Persévérant(e)': 'مثابر/ة',
   'sociable': 'اجتماعي/ة', 'Sociable': 'اجتماعي/ة', 'responsable': 'مسؤول/ة', 'Responsable': 'مسؤول/ة',
@@ -326,7 +314,7 @@ const CHOICE_AR = {
   'Éducation et formation': 'التعليم والتكوين', 'activit_s_culinaires': 'الأنشطة الطهوية',
   'Activités culinaires': 'الأنشطة الطهوية', 'communication': 'المسرح', 'Théâtre': 'المسرح',
   'travail_en__quipe': 'الرياضة', 'Sport': 'الرياضة', 'Travail en équipe': 'العمل الجماعي',
-  'leadership': 'الطبخ', 'Cuisiner': 'الطبخ', 'r_solution_de_probl_mes': 'حل المشكلات',
+  'leadership': 'الطبخ', 'r_solution_de_probl_mes': 'حل المشكلات',
   'Résolution de problèmes': 'حل المشكلات', 'pens_e_critique': 'ألعاب الطاولة', 'Jeux de société': 'ألعاب الطاولة',
   'cr_ativit': 'الإبداع', 'Créativité': 'الإبداع', 'organisation': 'التنظيم', 'Organisation': 'التنظيم',
   'analyse_logique': 'الألعاب الاستراتيجية', 'Jeux stratégiques': 'الألعاب الاستراتيجية',
@@ -339,9 +327,7 @@ const CHOICE_AR = {
   's_curit__financi_re': 'الأمن المالي', 'Sécurité financière': 'الأمن المالي', 'libert__du_temps': 'حرية الوقت',
   'Liberté du temps': 'حرية الوقت', 'd_fi_intellectuel': 'التحدي الفكري', 'Défi intellectuel': 'التحدي الفكري',
   'impact_social': 'الأثر الاجتماعي', 'Impact social': 'الأثر الاجتماعي', 'aventure': 'المغامرة',
-  'Aventure': 'المغامرة',
-  // Realisations AR
-  'Prix scolaire': 'جائزة مدرسية', 'Réussite sportive': 'إنجاز رياضي', 'Art / Musique': 'فن / موسيقى',
+  'Aventure': 'المغامرة', 'Prix scolaire': 'جائزة مدرسية', 'Réussite sportive': 'إنجاز رياضي', 'Art / Musique': 'فن / موسيقى',
   'Projet scolaire ou scientifique': 'مشروع مدرسي أو علمي', 'Bénévolat / Service à la communauté': 'تطوّع / خدمة المجتمع',
   'Leadership (délégué, chef d\'équipe...)': 'قيادة (مندوب، قائد فريق...)', 'Apprentissage d\'une langue': 'تعلّم لغة جديدة',
   'Technologie / Informatique': 'تكنولوجيا / معلوماتية', 'Création (dessin, écriture, artisanat...)': 'إبداع (رسم، كتابة، حرف يدوية...)',
@@ -349,6 +335,12 @@ const CHOICE_AR = {
 };
 
 const CHOICE_EN = {
+  'cuisiner': 'Cooking', 'Cuisiner': 'Cooking', 'Théatre': 'Theater',
+  'Projet scolaire': 'School or science project',
+  'Bénévolat': 'Volunteering / Community service',
+  'Leadership': 'Leadership (delegate, team leader...)',
+  'Création (art, dessin...)': 'Creation (drawing, writing, crafts...)',
+
   'analytique': 'Ambitious', 'Ambitieux(se)': 'Ambitious', 'cr_atif_ve': 'Creative', 'Créatif(ve)': 'Creative',
   'organis_e': 'Organized', 'Organisé(e)': 'Organized', 'pers_v_rant_e': 'Persevering', 'Persévérant(e)': 'Persevering',
   'sociable': 'Sociable', 'Sociable': 'Sociable', 'responsable': 'Responsible', 'Responsable': 'Responsible',
@@ -369,7 +361,7 @@ const CHOICE_EN = {
   'Éducation et formation': 'Education and Training', 'activit_s_culinaires': 'Culinary Activities',
   'Activités culinaires': 'Culinary Activities', 'communication': 'Theater', 'Théâtre': 'Theater',
   'travail_en__quipe': 'Sport', 'Sport': 'Sport', 'Travail en équipe': 'Teamwork',
-  'leadership': 'Cooking', 'Cuisiner': 'Cooking', 'r_solution_de_probl_mes': 'Problem Solving',
+  'leadership': 'Cooking', 'r_solution_de_probl_mes': 'Problem Solving',
   'Résolution de problèmes': 'Problem Solving', 'pens_e_critique': 'Board Games', 'Jeux de société': 'Board Games',
   'cr_ativit': 'Creativity', 'Créativité': 'Creativity', 'organisation': 'Organization', 'Organisation': 'Organization',
   'analyse_logique': 'Strategy Games', 'Jeux stratégiques': 'Strategy Games',
@@ -382,9 +374,7 @@ const CHOICE_EN = {
   's_curit__financi_re': 'Financial Security', 'Sécurité financière': 'Financial Security', 'libert__du_temps': 'Time Freedom',
   'Liberté du temps': 'Time Freedom', 'd_fi_intellectuel': 'Intellectual Challenge', 'Défi intellectuel': 'Intellectual Challenge',
   'impact_social': 'Social Impact', 'Impact social': 'Social Impact', 'aventure': 'Adventure',
-  'Aventure': 'Adventure', 
-  // Realisations EN
-  'Prix scolaire': 'School award', 'Réussite sportive': 'Sports achievement', 'Art / Musique': 'Art / Music',
+  'Aventure': 'Adventure', 'Prix scolaire': 'School award', 'Réussite sportive': 'Sports achievement', 'Art / Musique': 'Art / Music',
   'Projet scolaire ou scientifique': 'School or science project', 'Bénévolat / Service à la communauté': 'Volunteering / Community service',
   'Leadership (délégué, chef d\'équipe...)': 'Leadership (delegate, team leader...)', 'Apprentissage d\'une langue': 'Learning a new language',
   'Technologie / Informatique': 'Technology / Computing', 'Création (dessin, écriture, artisanat...)': 'Creation (drawing, writing, crafts...)',
@@ -426,7 +416,7 @@ function getParam(name) {
     nom: ['الإسم','nom','name'], age: ['العمر','age'], ecole: ['ecole','school','مدرسة'],
     classe: ['الصف','classe','class'], car: ['صفاتي','car','chars'], int: ['إهتماماتي','int','interests'],
     comp: ['مهاراتي','comp','skills'], val: ['قيمي','val','values'], 
-    real: ['realisations','real','achievements'], // AJOUT DES REALISATIONS DYNAMIQUES
+    real: ['realisations','real','achievements'], 
     riasec: ['إختبارriasec','riasec'], intel: ['إختبارintel','intel'], choix: ['مهنتي','choix','pro']
   };
   const p = new URLSearchParams(window.location.search);
@@ -441,19 +431,27 @@ function getParam(name) {
 const RAW = {
   nom: getParam('nom'), age: getParam('age'), ecole: getParam('ecole'), classe: getParam('classe'),
   car: getParam('car'), int: getParam('int'), comp: getParam('comp'), val: getParam('val'),
-  real: getParam('real'), // On récupère les réalisations
+  real: getParam('real'),
   riasec: getParam('riasec'), intel: getParam('intel'), choix: getParam('choix')
 };
 
 // ─── Translation & Image Fetching ──────────────────────────────────────────
 function trans(term, lang) {
   const t = term.trim();
+  
+  // Gère "Autres : précision"
+  if (t.toLowerCase().startsWith('autres :')) {
+     const prefix = lang === 'ar' ? 'أخرى :' : lang === 'en' ? 'Other :' : 'Autres :';
+     return prefix + t.substring(8);
+  }
+
   if (lang === 'ar') return CHOICE_AR[t] || t;
   if (lang === 'en') return CHOICE_EN[t] || t;
   return CHOICE_FR[t] || t;
 }
 
 function getImg(term) {
+  if (term.toLowerCase().startsWith('autres')) return 'other.jpg';
   return ITEM_IMAGES[term.trim()] || 'other.jpg';
 }
 
@@ -490,7 +488,7 @@ function parseChoix(raw, lang) {
 
 function fillPortfolioGrid(gridId, rawText, lang) {
   const grid = document.getElementById(gridId);
-  // Retour de la séparation par VIRGULE (,) pour ne pas couper "Nature et environnement"
+  // LA MAGIE EST ICI : Le split par VIRGULE qui empêche de casser les mots !
   const items = rawText.split(',').map(s => s.trim()).filter(Boolean);
   
   if (items.length === 0) {
@@ -499,9 +497,15 @@ function fillPortfolioGrid(gridId, rawText, lang) {
   }
   
   grid.innerHTML = items.map(rawItem => {
-    const cleanItem = rawItem.replace(/,/g, ''); 
+    let cleanItem = rawItem;
+    // Si la personne a précisé autre chose, on affiche l'image par défaut
+    let imgKey = cleanItem;
+    if (cleanItem.toLowerCase().startsWith('autres :')) {
+        imgKey = 'Autres';
+    }
+    
     const translatedText = trans(cleanItem, lang);
-    const imgFile = getImg(cleanItem);
+    const imgFile = getImg(imgKey);
     return `
       <div class="portfolio-card">
         <img src="${imgFile}" alt="${translatedText}">
@@ -519,7 +523,6 @@ function setLang(lang) {
   document.documentElement.lang = u.htmlLang;
   document.getElementById('page').dir = u.dir;
 
-  // Labels
   document.getElementById('main-title').textContent   = u.mainTitle;
   document.getElementById('t-info').textContent       = u.tInfo;
   document.getElementById('t-nom-label').textContent  = u.tNom;
@@ -538,16 +541,13 @@ function setLang(lang) {
   document.getElementById('t-real-title').textContent = u.tReal;
   document.querySelectorAll('.print-label,[id=btn-print-label]').forEach(el => el.textContent = u.tPrint);
 
-  // Grids (Maintient les images correctes en séparant par des virgules)
+  // Remplissage Parfait
   fillPortfolioGrid('grid-car', RAW.car, lang);
   fillPortfolioGrid('grid-int', RAW.int, lang);
   fillPortfolioGrid('grid-comp', RAW.comp, lang);
   fillPortfolioGrid('grid-val', RAW.val, lang);
-  
-  // Realisations (Maintenant 100% dynamiques selon les choix Kobo de l'élève)
   fillPortfolioGrid('grid-real', RAW.real, lang);
 
-  // Profil
   const riasecItems = parseMedals(RAW.riasec);
   const intelItems  = parseMedals(RAW.intel);
   [1,2,3].forEach(i => {
